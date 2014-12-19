@@ -5,7 +5,7 @@
 #include <cstdio>
 #include <vector>
 
-public class base_shape {
+class base_shape {
 public:
 
     /*! \brief The object-to-world transform.

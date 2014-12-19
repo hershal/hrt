@@ -1,5 +1,4 @@
-/*! Shape implementation for Hershal Bhave's hrt renderer */
-
+/*! Shape header for Hershal Bhave's hrt renderer */
 /*! All shapes are defined in their own coordinate space */
 
 #include <memory>

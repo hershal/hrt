@@ -1,3 +1,5 @@
+/*! Shape implementation for Hershal Bhave's hrt renderer */
+
 #include "base_shape.hpp"
 
 auto base_shape::world_bound() const -> bounding_box {

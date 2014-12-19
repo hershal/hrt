@@ -9,11 +9,11 @@
 **** TODO bounding_box (70)
 **** TODO differential_geometry (102)
 **** TODO ray (66)
-*** Methods [0/4]
-**** TODO object_bound (111) [[shape/shape.hpp]]
-**** TODO intersect (111) [[shape/shape.hpp]]
+*** Methods [3/4]
+**** DONE object_bound (111) [[shape/shape.hpp]]
+**** DONE intersect (111) [[shape/shape.hpp]]
 **** TODO get_shading_geometry (113) [[shape/shape.hpp]]
-**** TODO get_surface_area (113) [[shape/shape.hpp]]
+**** DONE get_surface_area (113) [[shape/shape.hpp]]
 *** TODO Primitives
 **** TODO Quadrics [0/6]
 ***** TODO Sphere

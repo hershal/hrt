@@ -1,0 +1,34 @@
+(setq org-todo-keywords '((sequence "DEFR" "HARD" "TODO" "|" "DONE")))
+* Hershal's Ray Tracer
+** TODO Basic Sampler
+- 1 sample per pixel
+
+** Scene
+*** Topics [0/4]
+**** TODO transform (76)
+**** TODO bounding_box (70)
+**** TODO differential_geometry (102)
+**** TODO ray (66)
+*** Methods [0/4]
+**** TODO object_bound (111) [[shape/shape.hpp]]
+**** TODO intersect (111) [[shape/shape.hpp]]
+**** TODO get_shading_geometry (113) [[shape/shape.hpp]]
+**** TODO get_surface_area (113) [[shape/shape.hpp]]
+*** TODO Primitives
+**** TODO Quadrics [0/6]
+***** TODO Sphere
+***** TODO Cones
+***** TODO Disks
+***** TODO Cylinders
+***** TODO Hyperboloids
+***** TODO Paraboloids
+**** TODO Cube
+
+** TODO Main Renderer
+
+
+** TODO Film
+*** "Film" Types:
+- JPEG
+- HDR
+** DEFR Dispatcher

@@ -25,7 +25,10 @@
   vectors are perpendicular (orthogonal), given that neither of the
   two vectors are degenerate, i.e. the zero vector. If the two vectors
   are unit vectors, then their dot product is simply the cosine of the
-  angle between them.
+  angle between them. Hence, if the two vectors lie in the same
+  hemisphere as one another, the cosine of angle between them is
+  positive; negative if the vectors are pointing in opposite
+  hemispheres.
 */
 auto dot(const vector& v1, const vector& v2) -> float {
     return v1.x * v2.x

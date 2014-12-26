@@ -34,7 +34,7 @@ public:
     /*! \brief TODO I have no idea why this is here. */
     const static size_t next_shape_id;
 
-    base_shape::base_shape(Transform* o_w, Transform *w_o, bool reverse)
+    base_shape::base_shape(transform* o_w, transform *w_o, bool reverse)
         : object_to_world(o_w)
         , world_to_object(w_o)
         /* , transform_swaps_handedness(o_w->swaps_handednes()) */
@@ -97,7 +97,7 @@ public:
     /* \brief Returns the surface area of the shape in object
        space. This is useful when using shapes as light sources.
     */
-    auto surface_area const -> const float;
+    auto surface_area() const -> const float;
 
 private:
 

@@ -53,3 +53,32 @@ auto cross(const vector &v1, const vector& v2) -> vector {
 auto normalize(const vector &v) -> vector {
     return v/v.norm();
 }
+
+/*! \brief Generates a new coordinate system given a single vector.
+  \param v1 The given vector to create the new coordinate system
+  based on
+  \param v2 The first associated output vector
+  \param v3 The second associated output vector
+
+  Reference [This Matlab comment](http://www.mathworks.com/matlabcentral/answers/72631-create-orthonormal-basis-from-a-given-vector)
+  for how this was determined.
+*/
+auto gen_coord_system(const vector &v1, vector* v2, vector* v3) -> void {
+
+    /* TODO: Test if there are any differences in accuracy and speed
+       dependent on which one was picked. Theoretically they should
+       give the same answer, but it's possible that numerically one
+       could be more stable than the other if one is very small (henc
+       the greater-than check). I'm sure in pathological cases there
+       may be some differences. */
+
+   if (fabsf(v1.x) > fabsf(v1.y)) {
+        float inv_norm = 1.f / sqrtf(v1.x*v1.x + v1.z*v1.z);
+        *v2 = vector(-v1.z * inv_norm, 0.f, v1.x * inv_norm);
+    } else {
+        float inv_norm = 1.f / sqrtf(v1.y*v1.y + v1.z*v1.z);
+        *v2 = vector(0.f, v1.z * inv_norm, -v1.y * inv_norm);
+    }
+
+    *v3 = cross(v1, *v2);
+}

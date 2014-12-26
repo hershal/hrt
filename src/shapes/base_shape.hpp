@@ -37,7 +37,7 @@ public:
     base_shape::base_shape(transform* o_w, transform *w_o, bool reverse)
         : object_to_world(o_w)
         , world_to_object(w_o)
-        /* , transform_swaps_handedness(o_w->swaps_handednes()) */
+        /* , transform_swaps_handedness(o_w->swaps_handedness()) */
         , reverse_normals(reverse)
         , shape_id(next_shape_id++) {
 

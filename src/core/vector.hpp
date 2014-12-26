@@ -55,10 +55,10 @@ public:
     auto operator*=(const vector &v) -> vector&;
 
     /*! \brief vector scale-by-reciprocal operator. */
-    auto operator*(const vector &v) const -> vector;
+    auto operator/(const vector &v) const -> vector;
 
     /*! \brief vector scale-assign-by-reciprocal operator. */
-    auto operator*=(const vector &v) -> vector&;
+    auto operator/=(const vector &v) -> vector&;
 
     /*! \brief vector get-value operator. */
     auto operator[] (const std::size_t i) const -> const float;

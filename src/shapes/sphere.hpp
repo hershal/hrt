@@ -11,7 +11,7 @@
 class sphere : public shape {
 
 public:
-    sphere::sphere(transform* o_w, transform *w_o, bool reverse,
+    sphere::sphere(transform* o_w, transform* w_o, bool reverse,
                    float radius, float z_min, float z_max, float phi_max)
         : shape(o_w, w_o, reverse) {
 
@@ -25,11 +25,11 @@ public:
 
     auto object_bound() const -> bounding_box;
     auto can_intersect() const -> bool;
+    auto intersect_predicate(const ray &r) const -> bool;
     auto intersect(const ray &r, float* t_hit,
                    float* ray_epsilon,
                    differential_geometry *dg) const -> bool;
     auto refine(std::vector<std::shared_ptr<base_shape> > &refined) const -> void;
-    auto intersect_predicate(const ray &r) const;
     auto surface_area() const -> const float;
 
 private:

@@ -12,8 +12,8 @@ class vector {
 public:
     vector() { this.x = 0; this.y = 0; this.z = 0; }
 
-    vector(float x, float y, float z) {
-        this.x = x; this.y = y; this.z = z;
+    vector(float x, float y, float z)
+        : x(x), y(y), z(z) {
         if (hasnan()) {
             printf("SEVERE: vector: Tried to construct a vector with a "
                    "NaN: x=%f, y=%f, z=%f ", x, y, z);

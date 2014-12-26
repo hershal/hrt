@@ -4,12 +4,13 @@
 - 1 sample per pixel
 
 ** Scene
-*** Topics [0/5]
+*** Topics [2/6]
 **** TODO transform (76)
 **** TODO bounding_box (70)
 **** TODO differential_geometry (102)
 **** TODO ray (66)
-**** TODO point (63)
+**** DONE point (63)
+**** DONE vector (58)
 *** Methods [3/4]
 **** DONE object_bound (111) [[shape/shape.hpp]]
 **** DONE intersect (111) [[shape/shape.hpp]]

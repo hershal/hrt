@@ -1,6 +1,5 @@
 /*! Vector header for Hershal Bhave's hrt renderer */
 
-/* /class vector */
 /* DO NOT use the std namespace as this name will conflict with that
    namespace */
 

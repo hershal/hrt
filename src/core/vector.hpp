@@ -33,6 +33,9 @@ public:
     /*! \brief Returns the 2-norm of this vector */
     auto norm() const -> float;
 
+    /*! \brief vector equality operator */
+    auto operator= (const vector& v) -> vector&
+
     /*! \brief vector unary negation operator. */
     auto operator-() const -> vector;
 

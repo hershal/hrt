@@ -16,6 +16,13 @@ auto vector::norm() const -> float {
     return sqrtf(normsq());
 }
 
+auto vector::operator=(const vector& v) -> vector& {
+    this.x = v.x;
+    this.y = v.y;
+    this.z = v.z;
+    return *this;
+}
+
 auto vector::operator-() const -> vector {
     return (vector(-this.x,
                    -this.y,

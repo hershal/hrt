@@ -9,9 +9,7 @@
 #define NUM_DIMENSIONS 3
 
 class vector {
-
 public:
-
     vector() { this.x = 0; this.y = 0; this.z = 0; }
 
     vector(float x, float y, float z) {

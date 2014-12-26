@@ -20,6 +20,8 @@ public:
         }
     }
 
+    explicit vector (const normal &n) : x(n.x), y(n.y), z(n.z) { };
+
     /*! \brief Returns if the vector has at least one not-a-number
         element. */
     auto hasnan() const -> bool;

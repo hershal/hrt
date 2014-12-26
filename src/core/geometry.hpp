@@ -16,7 +16,7 @@
 #include "vector.hpp"
 #include "point.hpp"
 
-/*! \brief The dot product operation.
+/*! \brief Compute the dot product between two vectors.
 
   The dot product is defined as the relationship between the angle
   between the two vectors: \f$(v \cdot w) = \|v\|\|w\|\cos \theta\f$,
@@ -33,7 +33,24 @@ auto dot(const vector& v1, const vector& v2) -> float {
         + v1.z * v2.z;
 }
 
-/*! \brief The cross product operation.
+/*! \brief Compute the dot product between two normals.
+
+  The dot product is defined as the relationship between the angle
+  between the two normals: \f$(v \cdot w) = \|v\|\|w\|\cos \theta\f$,
+  where \f$\theta\f$ is defined as the angle between \f$v\f$ and
+  \f$w\f$. The dot product of two normals is only zero if the two
+  normals are perpendicular (orthogonal), given that neither of the
+  two normals are degenerate, i.e. the zero normal. If the two normals
+  are unit normals, then their dot product is simply the cosine of the
+  angle between them.
+*/
+auto dot(const normal& n1, const normal& n2) -> float {
+    return n1.x * n2.x
+        + n1.y * n2.y
+        + n1.z * n2.z;
+}
+
+/*! \brief Compute the cross product between two vectors.
 
   The cross product, in a general sense, returns a vector
   perpendicular to the two input vectors. Since the output vector can
@@ -53,6 +70,11 @@ auto cross(const vector &v1, const vector& v2) -> vector {
 /*! \brief Normalizes the given vector. */
 auto normalize(const vector &v) -> vector {
     return v/v.norm();
+}
+
+/*! \brief Normalizes the given normal. */
+auto normalize(const normal &n) -> normal {
+    return n/n.norm();
 }
 
 /*! \brief Generates a new coordinate system given a single vector.

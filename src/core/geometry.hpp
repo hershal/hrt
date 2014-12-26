@@ -14,6 +14,7 @@
   point up. */
 
 #include "vector.hpp"
+#include "point.hpp"
 
 /*! \brief The dot product operation.
 
@@ -81,4 +82,14 @@ auto gen_coord_system(const vector &v1, vector* v2, vector* v3) -> void {
     }
 
     *v3 = cross(v1, *v2);
+}
+
+/*! \brief Compute the distance between two points, squared */
+auto distsq(const point &p1, const point &p2) {
+    return (p1 - p2).norm();
+}
+
+/*! \brief Compute the distance between two points */
+auto dist(const point &p1, const point &p2) {
+    return (p1 - p2).normsq();
 }

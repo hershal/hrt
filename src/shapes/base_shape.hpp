@@ -2,7 +2,6 @@
 /*! All shapes are defined in their own coordinate space */
 
 #include <memory>
-#include <cstdio>
 #include <vector>
 
 class base_shape {

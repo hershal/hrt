@@ -2,6 +2,8 @@
 
 #include "base_shape.hpp"
 
+#include <cstdio>
+
 auto base_shape::world_bound() const -> bounding_box {
     return (*object_to_world)(object_bound());
 }

@@ -40,5 +40,11 @@ public:
     /*! \brief point scale-assign operator. */
     auto operator*=(const point &v) -> point&;
 
+    /*! \brief point get-value operator. */
+    auto operator[] (const std::size_t i) const -> const float;
+
+    /*! \brief point set-value operator. */
+    auto operator[] (const std::size_t i) -> float&;
+
     float x, y, z;
 }

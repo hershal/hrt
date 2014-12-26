@@ -8,6 +8,14 @@ vector::hasnan() const -> bool {
     }
 }
 
+auto vector::normsq() const -> float {
+    return this.x*this.x + this.y*this.y + this.z*this.z;
+}
+
+auto vector::norm() const -> float {
+    return sqrtf(normsq());
+}
+
 auto vector::operator-() const -> vector {
     return (vector(-this.x,
                    -this.y,

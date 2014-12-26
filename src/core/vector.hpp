@@ -27,6 +27,12 @@ public:
         element. */
     auto hasnan() const -> bool;
 
+    /* \brief Returns the 2-norm of this vector, squared */
+    auto normsq() const -> float;
+
+    /*! \brief Returns the 2-norm of this vector */
+    auto norm() const -> float;
+
     /*! \brief vector unary negation operator. */
     auto operator-() const -> vector;
 

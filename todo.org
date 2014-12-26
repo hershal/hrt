@@ -4,11 +4,13 @@
 - 1 sample per pixel
 
 ** Scene
-*** Topics [2/6]
+*** Topics [3/8]
 **** TODO transform (76)
 **** TODO bounding_box (70)
 **** TODO differential_geometry (102)
-**** TODO ray (66)
+**** DONE ray (66)
+**** DEFR ray time element (67) [[core/ray.hpp]]
+**** DEFR ray_differential (69)
 **** DONE point (63)
 **** DONE vector (58)
 *** Methods [3/4]

@@ -35,19 +35,32 @@ auto dot(const vector& v1, const vector& v2) -> float {
 
 /*! \brief Compute the dot product between two normals.
 
-  The dot product is defined as the relationship between the angle
-  between the two normals: \f$(v \cdot w) = \|v\|\|w\|\cos \theta\f$,
-  where \f$\theta\f$ is defined as the angle between \f$v\f$ and
-  \f$w\f$. The dot product of two normals is only zero if the two
-  normals are perpendicular (orthogonal), given that neither of the
-  two normals are degenerate, i.e. the zero normal. If the two normals
-  are unit normals, then their dot product is simply the cosine of the
-  angle between them.
+  The computation is the same as the vector-vector dot product.
 */
 auto dot(const normal& n1, const normal& n2) -> float {
     return n1.x * n2.x
         + n1.y * n2.y
         + n1.z * n2.z;
+}
+
+/*! \brief Compute the dot product between a normal and a vector.
+
+  The computation is the same as the vector-vector dot product.
+*/
+auto dot(const normal& n1, const vector& v2) -> float {
+    return n1.x * v2.x
+        + n1.y * v2.y
+        + n1.z * v2.z;
+}
+
+/*! \brief Compute the dot product between a vector and a normal.
+
+  The computation is the same as the vector-vector dot product.
+*/
+auto dot(const vector& v1, const normal& n2) -> float {
+    return v1.x * n2.x
+        + v1.y * n2.y
+        + v1.z * n2.z;
 }
 
 /*! \brief Compute the cross product between two vectors.
@@ -114,4 +127,41 @@ auto distsq(const point &p1, const point &p2) {
 /*! \brief Compute the distance between two points */
 auto dist(const point &p1, const point &p2) {
     return (p1 - p2).normsq();
+}
+
+/*! \brief Flip the normal so that it faces the same hemisphere as the
+    vector.
+
+  \param n1 The normal to flip
+  \param v2 The vector the point the normal toward
+*/
+auto face_toward(const normal &n1, const vector &v2) -> normal {
+    return (dot(n1, v2) < 0.0f) ? -n1 : n1;
+}
+
+/* \brief Flip the first normal so that it faces the same hemisphere
+    as the second normal.
+
+    This computation is the same as the normal-vector method.
+*/
+auto face_toward(const normal &n1, const normal &n2) -> normal {
+    return (dot(n1, n2) < 0.0f) ? -n1 : n1;
+}
+
+/* \brief Flip the vector so that it faces the same hemisphere
+    as the normal.
+
+    This computation is the same as the normal-vector method.
+*/
+auto face_toward(const vector &v1, const normal &n2) -> normal {
+    return (dot(v1, n2) < 0.0f) ? -v1 : v1;
+}
+
+/* \brief Flip the first vector so that it faces the same hemisphere
+    as the second vector.
+
+    This computation is the same as the normal-vector method.
+*/
+auto face_toward(const vector &v1, const vector &v2) -> normal 
+    return (dot(v1, v2) < 0.0f) ? -v1 : v1;
 }

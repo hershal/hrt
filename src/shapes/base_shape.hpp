@@ -34,7 +34,7 @@ public:
     /*! \brief TODO I have no idea why this is here. */
     const static size_t next_shape_id;
 
-    base_shape::base_shape(transform* o_w, transform *w_o, bool reverse)
+    base_shape(transform* o_w, transform *w_o, bool reverse)
         : object_to_world(o_w)
         , world_to_object(w_o)
         /* , transform_swaps_handedness(o_w->swaps_handedness()) */

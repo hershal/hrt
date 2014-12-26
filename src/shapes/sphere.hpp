@@ -11,7 +11,7 @@
 class sphere : public shape {
 
 public:
-    sphere::sphere(transform* o_w, transform* w_o, bool reverse,
+    sphere(transform* o_w, transform* w_o, bool reverse,
                    float radius, float z_min, float z_max, float phi_max)
         : shape(o_w, w_o, reverse) {
 

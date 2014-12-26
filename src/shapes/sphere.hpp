@@ -14,7 +14,6 @@ public:
     sphere(transform* o_w, transform* w_o, bool reverse,
                    float radius, float z_min, float z_max, float phi_max)
         : shape(o_w, w_o, reverse) {
-
         this.radius = radius;
         this.phi_max = phi_max;
         this.z_min = z_min;

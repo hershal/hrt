@@ -12,7 +12,6 @@ auto sphere::XB
 intersect(const ray &r, float* t_hit,
                float* ray_epsilon,
                differential_geometry *dg) const -> bool {
-
     float phi;
     point phi_t;
 

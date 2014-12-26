@@ -15,7 +15,6 @@ auto base_shape::can_intersect() const -> bool {
 
 auto base_shape::refine(std::vector<std::shared_ptr<base_shape> > &refined) const
     -> void {
-
     printf("ERROR: SEVERE: Cannot refine an atomic shape\n");
 }
 
@@ -23,13 +22,11 @@ auto base_shape::intersect(const ray &r,
                       float* t_hit,
                       float* ray_epsilon,
                       differential_geometry *dg) const -> bool {
-
     printf("ERROR: SEVERE: Cannot call intersect on a general shape\n");
     return false;
 }
 
 auto base_shape::intersect_predicate(const ray &r) const -> bool {
-
     printf("ERROR: SEVERE: Cannot call intersect_predicate on a general shape\n");
     return false;
 }

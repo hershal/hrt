@@ -15,6 +15,8 @@
 
 #include "vector.hpp"
 #include "point.hpp"
+#include "ray.hpp"
+#include "bounding_box.hpp"
 
 /*! \brief Compute the dot product between two vectors.
 
@@ -167,4 +169,40 @@ auto face_toward(const vector &v1, const normal &n2) -> normal {
 */
 auto face_toward(const vector &v1, const vector &v2) -> normal 
     return (dot(v1, v2) < 0.0f) ? -v1 : v1;
+}
+
+/*! \brief Construct a new bounding box from an existing one which
+  encloses an additional point. */
+auto bb_union
+    (const bounding_box &b, const point &p) -> bounding_box {
+
+    bounding_box returning_box = b;
+
+    returning_box.min.x = min(b.min.x, p.x);
+    returning_box.min.y = min(b.min.y, p.y);
+    returning_box.min.z = min(b.min.z, p.z);
+
+    returning_box.max.x = max(b.max.x, p.x);
+    returning_box.max.y = max(b.max.y, p.y);
+    returning_box.max.z = max(b.max.z, p.z);
+
+    return returning_box;
+}
+
+/*! \brief Construct a new bounding box which encloses two existing
+  bounding boxes. */
+auto friend bb_union
+    (const bounding_box &b1, const bounding_box &b2) -> bounding_box {
+
+    bounding_box returning_box = b;
+
+    returning_box.min.x = min(b1.min.x, b2.min.x);
+    returning_box.min.y = min(b1.min.y, b2.min.y);
+    returning_box.min.z = min(b1.min.z, b2.min.z);
+
+    returning_box.max.x = max(b1.max.x, b2.max.x);
+    returning_box.max.y = max(b1.max.y, b2.max.y);
+    returning_box.max.z = max(b1.max.z, b2.max.z);
+
+    return returning_box;
 }

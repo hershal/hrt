@@ -5,12 +5,14 @@
     \f$r(t) = o + t d\f$ where \f$0\le t \le \infty\f$.
 */
 
+#include "point.hpp"
+#include "vector.hpp"
+
 #include <cmath>
 #include <cfloat>
 
 class ray {
 public:
-
     ray() : mint(0.0f), maxt(FLT_MAX), depth(0) { }
 
     ray(const point &origin, const vector &direction,

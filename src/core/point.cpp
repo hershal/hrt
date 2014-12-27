@@ -64,7 +64,7 @@ auto point::operator*=(float &v) -> point& {
 auto point::operator[] (const std::size_t i) const -> const float {
     if(i >= NUM_DIMENSIONS) {
         printf("SEVERE: point: tried to get point component greater"
-               "than the number of dimensions (%i)", NUM_DIMENSIONS);
+               "than the number of dimensions (%i): %lu", NUM_DIMENSIONS, i);
     }
 
     /* NOT GUARANTEED PORTABLE! */
@@ -75,7 +75,7 @@ auto point::operator[] (const std::size_t i) const -> const float {
 auto point::operator[] (const std::size_t i) -> float& {
     if(i >= NUM_DIMENSIONS) {
         printf("SEVERE: point: tried to set point component greater"
-               "than the number of dimensions (%i)", NUM_DIMENSIONS);
+               "than the number of dimensions (%i): %lu", NUM_DIMENSIONS, i);
     }
 
     /* NOT GUARANTEED PORTABLE! */

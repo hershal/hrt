@@ -3,8 +3,12 @@
 #include "sphere.hpp"
 
 auto hrt::shapes::sphere::object_bound() const -> hrt::core::bounding_box {
-    return hrt::core::bounding_box(hrt::core::point(-radius, -radius, z_min),
-                                   hrt::core::point( radius,  radius, z_max));
+
+    hrt::core::point p1, p2;
+    p1 = hrt::core::point(-radius, -radius, z_min);
+    p2 = hrt::core::point( radius,  radius, z_max);
+
+    return hrt::core::bounding_box(&p1, &p2);
 }
 
 auto hrt::shapes::sphere::can_intersect() const -> bool { return true; }

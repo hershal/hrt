@@ -1,7 +1,7 @@
 /*! Bounding Box implementation for Hershal Bhave's hrt renderer */
 
 #include "bounding_box.hpp"
-#include "utility_functions.hpp"
+#include "utility/utility_functions.hpp"
 
 auto hrt::core::bounding_box::contains(const hrt::core::bounding_box *b) const
     -> bool {

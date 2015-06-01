@@ -1,7 +1,7 @@
 /*! Vector implementation for Hershal Bhave's hrt renderer */
 
 #include "vector.hpp"
-#include "utility_functions.hpp"
+#include "utility/utility_functions.hpp"
 
 auto hrt::core::vector::hasnan() const -> bool {
     if (isnan(x) || isnan(y) || isnan(z)) {

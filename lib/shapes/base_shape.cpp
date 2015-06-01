@@ -4,34 +4,40 @@
 
 #include <cstdio>
 
-auto base_shape::world_bound() const -> bounding_box {
+auto hrt::shapes::base_shape::world_bound() const -> hrt::core::bounding_box {
     return (*object_to_world)(object_bound());
 }
 
 /* The default shape can always calculate its own intersections */
-auto base_shape::can_intersect() const -> bool {
+auto hrt::shapes::base_shape::can_intersect() const -> bool {
     return true;
 }
 
-auto base_shape::refine(std::vector<std::shared_ptr<base_shape> > &refined) const
+auto hrt::shapes::base_shape::refine(std::vector<hrt::shapes::base_shape*> &refined) const
     -> void {
+    (void) refined;
     printf("ERROR: SEVERE: Cannot refine an atomic shape\n");
 }
 
-auto base_shape::intersect(const ray &r,
-                      float* t_hit,
-                      float* ray_epsilon,
-                      differential_geometry *dg) const -> bool {
+auto hrt::shapes::base_shape::intersect(const hrt::core::ray &r,
+                           float* t_hit,
+                           float* ray_epsilon,
+                           differential_geometry *dg) const -> bool {
+    (void) r;
+    (void) t_hit;
+    (void) ray_epsilon;
+    (void) dg;
     printf("ERROR: SEVERE: Cannot call intersect on a general shape\n");
     return false;
 }
 
-auto base_shape::intersect_predicate(const ray &r) const -> bool {
-    printf("ERROR: SEVERE: Cannot call intersect_predicate on a general shape\n");
+auto hrt::shapes::base_shape::intersectp(const hrt::core::ray &r) const -> bool {
+    (void) r;
+    printf("ERROR: SEVERE: Cannot call intersectp on a general shape\n");
     return false;
 }
 
-auto base_shape::surface_area const -> const float {
+auto hrt::shapes::base_shape::surface_area() const -> float {
     printf("ERROR: SEVERE: Cannot call surface_area on a general shape\n");
     return 0.0f;
 }

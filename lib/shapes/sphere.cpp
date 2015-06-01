@@ -2,18 +2,18 @@
 
 #include "sphere.hpp"
 
-auto sphere::object_bound() const -> bounding_box {
-    return bounding_box(point(-radius, -radius, z_min),
-                        point( radius,  radius, z_max));
+auto hrt::shapes::sphere::object_bound() const -> hrt::core::bounding_box {
+    return hrt::core::bounding_box(hrt::core::point(-radius, -radius, z_min),
+                                   hrt::core::point( radius,  radius, z_max));
 }
-auto sphere::can_intersect() const -> bool { return true; }
 
-auto sphere::XB
-intersect(const ray &r, float* t_hit,
-               float* ray_epsilon,
-               differential_geometry *dg) const -> bool {
+auto hrt::shapes::sphere::can_intersect() const -> bool { return true; }
+
+auto hrt::shapes::sphere::intersect(const hrt::core::ray *r, float *t_hit,
+                                    float *ray_epsilon,
+                                    differential_geometry *dg) const -> bool {
     float phi;
-    point phi_t;
+    hrt::core::point phi_t;
 
     /* Transform the ray to object space */
     /* Compute the quadractic sphere coefficients */
@@ -23,6 +23,10 @@ intersect(const ray &r, float* t_hit,
     /* Initialize the DifferentialGeometry from the parametric information */
     /* Update t_hit for quadractic intersection */
     /* compute ray_epsilon for quadratic intersection */
+
+    /* TODO: REMOVE */
+    (void) phi;
+    (void) phi_t;
 
     return true;
 }

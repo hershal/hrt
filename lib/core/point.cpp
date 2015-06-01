@@ -80,3 +80,14 @@ auto hrt::core::point::operator[] (const std::size_t i) -> float& {
     /* TODO: Test this */
     return (&x)[i];
 }
+
+auto distance(const hrt::core::point* p1,
+              const hrt::core::point* p2)
+    -> float {
+
+    float xx = p1->x - p2->x;
+    float yy = p1->y - p2->y;
+    float zz = p1->z - p2->z;
+
+    return sqrt(xx*xx + yy*yy + zz*zz);
+}

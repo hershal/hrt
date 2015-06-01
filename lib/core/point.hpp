@@ -58,6 +58,10 @@ namespace hrt {
             /*! \brief point set-value operator. */
             auto operator[] (const std::size_t i) -> float&;
 
+            /* --- Friend utility functions --- */
+            /*! \brief Get the distance between two points */
+            friend auto distance(const point* p1, const point* p2) -> float;
+
             float x, y, z;
         };
     }

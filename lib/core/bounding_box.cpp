@@ -28,7 +28,6 @@ auto hrt::core::bounding_box::expand(float delta) -> void {
     min -= delta_vector;
     max += delta_vector;
 }
-}
 
 auto hrt::core::bounding_box::surface_area() const -> float {
 
@@ -103,3 +102,21 @@ auto hrt::core::bounding_box::operator[](std::size_t i) -> hrt::core::point* {
     case 1:  return &max;
     }
 }
+
+/* TODO: Why would accepting a bounding box as input be necessary? */
+auto bb_union(const hrt::core::bounding_box *b,
+              const hrt::core::point *p)
+    -> hrt::core::bounding_box {
+
+    /* TODO: check that this does not destroy b's data */
+    hrt::core::bounding_box ret = *b;
+
+    ret.min.x = std::fmin(b->min.x, p->x);
+    ret.min.y = std::fmin(b->min.y, p->y);
+    ret.min.z = std::fmin(b->min.z, p->z);
+    ret.max.x = std::fmax(b->max.x, p->x);
+    ret.max.y = std::fmax(b->max.y, p->y);
+    ret.max.z = std::fmax(b->max.z, p->z);
+    return ret;
+}
+

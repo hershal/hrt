@@ -29,8 +29,6 @@
 **** TODO Cube
 
 ** TODO Main Renderer
-
-
 ** TODO Film
 *** "Film" Types:
 - JPEG

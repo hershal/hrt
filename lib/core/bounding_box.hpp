@@ -69,14 +69,14 @@ namespace hrt {
             /*! \brief Obtain the linearly interpolated point between the two
               bounding box corners. */
             auto bb_linear_interpolate(float tx, float fy, float tz) const
-                -> hrt::core::vector*;
+                -> hrt::core::vector;
 
             /*! \brief Obtain the position of a point relative to the bounding
               box's min and max points. A return value of point (0,0,0)
               corresponds to the min bound and a return value of point
               (1,1,1) corresponds to the max bound. */
             auto relative_position(const point *p)
-                -> hrt::core::vector*;
+                -> hrt::core::vector;
 
             /*! \brief Obtaint the bounding sphere corresponding to this
               bounding box. */
@@ -88,8 +88,8 @@ namespace hrt {
             /*! \brief bounding box set-value operator */
             auto operator[](std::size_t i) -> hrt::core::point*;
 
-            hrt::core::point *min;
-            hrt::core::point *max;
+            hrt::core::point min;
+            hrt::core::point max;
         };
     }
 }

@@ -36,3 +36,5 @@
 - JPEG
 - HDR
 ** DEFR Dispatcher
+** Heap vs. Stack
+Need to make a decision on heap vs stack allocations

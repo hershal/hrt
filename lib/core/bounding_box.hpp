@@ -27,23 +27,23 @@ namespace hrt {
         class bounding_box {
         public:
             bounding_box() {
-                min = new hrt::core::point(-FLT_MAX, -FLT_MAX, -FLT_MAX);
-                max = new hrt::core::point(FLT_MAX, FLT_MAX, FLT_MAX);
+                min = hrt::core::point(-FLT_MAX, -FLT_MAX, -FLT_MAX);
+                max = hrt::core::point(FLT_MAX, FLT_MAX, FLT_MAX);
             }
 
             /*! \brief Constructor to enclose a single point around a
               bounding box. */
             bounding_box(const hrt::core::point *p) {
-                min = new hrt::core::point(p->x, p->y, p->z);
-                max = new hrt::core::point(p->x, p->y, p->z);
+                min = hrt::core::point(p->x, p->y, p->z);
+                max = hrt::core::point(p->x, p->y, p->z);
             }
 
             /*! \brief Constructor which creates a bounding box about two points. */
             bounding_box(const hrt::core::point *p1, const hrt::core::point *p2) {
-                min = new hrt::core::point(std::fmin(p1->x, p2->x),
-                    std::fmin(p1->y, p2->y), std::fmin(p1->z, p2->z));
-                max = new hrt::core::point(std::fmax(p1->x, p2->x),
-                    std::fmax(p1->y, p2->y), std::fmax(p1->z, p2->z));
+                min = hrt::core::point(std::fmin(p1->x, p2->x),
+                                       std::fmin(p1->y, p2->y), std::fmin(p1->z, p2->z));
+                max = hrt::core::point(std::fmax(p1->x, p2->x),
+                                       std::fmax(p1->y, p2->y), std::fmax(p1->z, p2->z));
             }
 
             /*! \brief Returns whether or not a given bounding box is

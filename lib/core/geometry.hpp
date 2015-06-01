@@ -13,6 +13,9 @@
   be met, i.e. the thumb must points right and the index finger must
   point up. */
 
+#ifndef HRT_CORE_GEOMETRY_HPP
+#define HRT_CORE_GEOMETRY_HPP
+
 #include "vector.hpp"
 #include "point.hpp"
 #include "ray.hpp"
@@ -167,7 +170,7 @@ auto face_toward(const vector &v1, const normal &n2) -> normal {
 
     This computation is the same as the normal-vector method.
 */
-auto face_toward(const vector &v1, const vector &v2) -> normal 
+auto face_toward(const vector &v1, const vector &v2) -> normal
     return (dot(v1, v2) < 0.0f) ? -v1 : v1;
 }
 
@@ -206,3 +209,5 @@ auto friend bb_union
 
     return returning_box;
 }
+
+#endif /* HRT_CORE_GEOMETRY_HPP */

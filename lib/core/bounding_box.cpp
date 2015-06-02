@@ -73,7 +73,7 @@ auto hrt::core::bounding_box::relative_position(const point *p)
 auto hrt::core::bounding_box::bounding_sphere(point *c, float *rad) const -> void {
 
     *c = new hrt::core::point(this->min * 0.5f + this->max * .5f);
-    *rad = inside(c) ? distance(c, &max) : 0.f;
+    *rad = contains(c) ? distance(c, &max) : 0.f;
 }
 
 auto hrt::core::bounding_box::operator[](std::size_t i) const

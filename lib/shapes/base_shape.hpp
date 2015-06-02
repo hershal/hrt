@@ -6,6 +6,8 @@
 
 #include "core/bounding_box.hpp"
 #include "core/ray.hpp"
+#include "core/transform.hpp"
+#include "core/differential_geometry.hpp"
 
 namespace hrt {
     namespace shapes {
@@ -15,12 +17,12 @@ namespace hrt {
             /*! \brief The object-to-world transform.
               This describes the mapping from object space to world space
             */
-            const transform *object_to_world;
+            const hrt::core::transform *object_to_world;
 
             /*! \brief The world-to-object transform.
               This describes the mapping from world space to object space
             */
-            const transform *world_to_object;
+            const hrt::core::transform *world_to_object;
 
             /*! \brief Reverse the surface normal.
               This orients the shape; the direction of the surface normal
@@ -38,11 +40,11 @@ namespace hrt {
             /*! \brief TODO I have no idea why this is here. */
             static size_t next_shape_id;
 
-            base_shape(transform* o_w, transform *w_o, bool reverse)
+            base_shape(hrt::core::transform *o_w, hrt::core::transform *w_o, bool reverse)
                 : object_to_world(o_w)
                 , world_to_object(w_o)
-                  /* , transform_swaps_handedness(o_w->swaps_handedness()) */
                 , reverse_normals(reverse)
+                , transform_swaps_handedness(o_w->swaps_handedness())
                 , shape_id(next_shape_id++) { }
 
             /*! \brief Get the bounding box in the shape's object space. */
@@ -83,7 +85,7 @@ namespace hrt {
             */
             auto intersect(const hrt::core::ray &r, float *t_hit,
                            float *ray_epsilon,
-                           differential_geometry *dg) const -> bool;
+                           hrt::core::differential_geometry *dg) const -> bool;
 
             /*! \brief Returns if a ray can intersect with the shape. This can be
               a more optimized version of intersect which only calculates if

@@ -1,7 +1,9 @@
 /*! Utility function definitions */
 
-#ifndef HRT_CORE_UTILITY_FUNCTIONS_HPP
-#define HRT_CORE_UTILITY_FUNCTIONS_HPP
+#ifndef HRT_UTILITY_FUNCTIONS_HPP
+#define HRT_UTILITY_FUNCTIONS_HPP
+
+#include <cmath>
 
 /*! Constrain the value of a float between a lower and upper bound
 
@@ -26,7 +28,7 @@ auto linear_interpolate(float t, float v1, float v2) -> float {
 }
 
 auto inline relative_error(float a, float b) -> float {
-    return fabs((a - b)/b);
+    return std::fabs((a - b)/b);
 }
 
 auto almost_equal_relative(float a, float b, float epsilon) -> bool {
@@ -38,7 +40,7 @@ auto almost_equal_relative(float a, float b, float epsilon) -> bool {
 
     /* We want to divide by the largest number to minimize roundoff error */
     float relerr;
-    if (fabs(a) > fabs(b)) {
+    if (std::fabs(a) > std::fabs(b)) {
         relerr = relative_error(b, a);
     } else {
         relerr = relative_error(a, b);
@@ -51,4 +53,4 @@ auto almost_equal_relative(float a, float b, float epsilon) -> bool {
     return false;
 }
 
-#endif /* HRT_CORE_UTILITY_FUNCTIONS_HPP */
+#endif /* HRT_UTILITY_FUNCTIONS_HPP */

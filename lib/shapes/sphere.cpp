@@ -15,7 +15,7 @@ auto hrt::shapes::sphere::can_intersect() const -> bool { return true; }
 
 auto hrt::shapes::sphere::intersect(const hrt::core::ray *r, float *t_hit,
                                     float *ray_epsilon,
-                                    differential_geometry *dg) const -> bool {
+                                    hrt::core::differential_geometry *dg) const -> bool {
     float phi;
     hrt::core::point phi_t;
 
@@ -29,6 +29,10 @@ auto hrt::shapes::sphere::intersect(const hrt::core::ray *r, float *t_hit,
     /* compute ray_epsilon for quadratic intersection */
 
     /* TODO: REMOVE */
+    (void) r;
+    (void) t_hit;
+    (void) ray_epsilon;
+    (void) dg;
     (void) phi;
     (void) phi_t;
 

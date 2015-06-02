@@ -15,9 +15,9 @@ namespace hrt {
 
         class sphere : public base_shape {
         public:
-            sphere(transform* o_w, transform* w_o, bool reverse,
+            sphere(core::transform* o_w, core::transform* w_o, bool reverse,
                    float radius, float z_min, float z_max, float phi_max)
-                : shape(o_w, w_o, reverse) {
+                : base_shape(o_w, w_o, reverse) {
                 this->radius = radius;
                 this->phi_max = phi_max;
                 this->z_min = z_min;
@@ -29,9 +29,9 @@ namespace hrt {
             auto object_bound() const -> hrt::core::bounding_box;
             auto can_intersect() const -> bool;
             auto intersect_predicate(const hrt::core::ray &r) const -> bool;
-            auto intersect(const hrt::core::ray &r, float* t_hit,
+            auto intersect(const hrt::core::ray *r, float* t_hit,
                            float* ray_epsilon,
-                           differential_geometry *dg) const -> bool;
+                           hrt::core::differential_geometry *dg) const -> bool;
             auto refine(std::vector<base_shape*> &refined) const -> void;
             auto surface_area() const -> float;
 

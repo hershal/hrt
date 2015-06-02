@@ -5,7 +5,7 @@
 #include <cstdio>
 
 auto hrt::shapes::base_shape::world_bound() const -> hrt::core::bounding_box {
-    return (*object_to_world)(object_bound());
+    return object_bound();
 }
 
 /* The default shape can always calculate its own intersections */
@@ -20,9 +20,8 @@ auto hrt::shapes::base_shape::refine(std::vector<hrt::shapes::base_shape*> &refi
 }
 
 auto hrt::shapes::base_shape::intersect(const hrt::core::ray &r,
-                           float* t_hit,
-                           float* ray_epsilon,
-                           differential_geometry *dg) const -> bool {
+                           float* t_hit, float* ray_epsilon,
+                           hrt::core::differential_geometry *dg) const -> bool {
     (void) r;
     (void) t_hit;
     (void) ray_epsilon;

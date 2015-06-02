@@ -4,6 +4,7 @@
 #define HRT_UTILITY_FUNCTIONS_HPP
 
 #include <cmath>
+#include <boost/assert.hpp>
 
 /*! Constrain the value of a float between a lower and upper bound
 
@@ -12,6 +13,8 @@
   \param upper The upper bound to constrain against
  */
 auto clamp(float n, float lower, float upper) -> float {
+
+    BOOST_ASSERT_MSG(lower < upper, "clamp low value >= upper value");
     return std::fmax(lower, std::fmin(n, upper));
 }
 

@@ -13,7 +13,7 @@ option(PEDANTIC "Enable pedantic and Wall" ON)
 option(COLOR "Enable colorized output (clang-only)" ON)
 
 if(PROFILE)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -g -O0")
 endif()
 
 if(PEDANTIC)
@@ -25,3 +25,4 @@ if(NOT COLOR)
 endif()
 
 add_subdirectory(lib)
+add_subdirectory(tests)

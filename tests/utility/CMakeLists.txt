@@ -1,0 +1,6 @@
+project(utility-tests)
+set(utility-tests-srcs utility_tests.cpp)
+include_directories("../../lib")
+add_executable(utility-tests ${utility-tests-srcs})
+target_link_libraries(utility-tests core boost_unit_test_framework)
+add_test(utility-tests utility-tests)

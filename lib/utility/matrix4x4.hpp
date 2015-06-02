@@ -15,19 +15,18 @@ namespace hrt {
                                               {0.f, 0.f, 1.f, 0.f},
                                               {0.f, 0.f, 0.f, 1.f}};
 
-        /*! Constrain the value of a float between a lower and upper bound
+        /*! \brief Set a given matrix4x4 to the 4x4 identity matrix.
 
-          \param n The value to constrain
-          \param lower The lower bound to constrain against
-          \param upper The upper bound to constrain against
+          \param m The matrix to set to the identity matrix
         */
-        auto eye(float m[4][4]) -> void {
-            memcpy(m, identity_matrix, 16*sizeof(float));
-        }
+        auto eye(float m[4][4]) -> void;
 
-        auto copy(float src[4][4], float dst[4][4]) -> void {
-            memcpy(dst, src, 16*sizeof(float));
-        }
+        /*! \brief Copies a matrix4x4 to another matrix4x4.
+
+          \param src The matrix4x4 to copy from
+          \param dst The matrix4x4 to copy to
+        */
+        auto copy(float src[4][4], float dst[4][4]) -> void;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

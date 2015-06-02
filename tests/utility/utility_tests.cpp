@@ -1,11 +1,8 @@
+#include <boost/test/unit_test.hpp>
+
 #include <limits>
 
 #include "utility/utility_functions.hpp"
-
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Suites
-#include <boost/test/unit_test.hpp>
-#include <boost/test/execution_monitor.hpp>
 
 BOOST_AUTO_TEST_SUITE(utility_tests)
 

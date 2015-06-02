@@ -4,7 +4,6 @@
 #define HRT_UTILITY_FUNCTIONS_HPP
 
 #include <cmath>
-#include <boost/assert.hpp>
 
 /*! Constrain the value of a float between a lower and upper bound
 
@@ -12,11 +11,7 @@
   \param lower The lower bound to constrain against
   \param upper The upper bound to constrain against
  */
-auto clamp(float n, float lower, float upper) -> float {
-
-    BOOST_ASSERT_MSG(lower < upper, "clamp low value >= upper value");
-    return std::fmax(lower, std::fmin(n, upper));
-}
+auto clamp(float n, float lower, float upper) -> float;
 
 /*! Obtain the linearly interpolated value between two floats
 
@@ -26,35 +21,13 @@ auto clamp(float n, float lower, float upper) -> float {
   \param v1 The first value to interpolate between
   \param v2 The second value to interpolate between
  */
-auto linear_interpolate(float t, float v1, float v2) -> float {
-    return (1.0f - t)*v1 + t*v2;
-}
+auto linear_interpolate(float t, float v1, float v2) -> float;
 
-auto inline relative_error(float a, float b) -> float {
-    return std::fabs((a - b)/b);
-}
+auto relative_error(float a, float b) -> float;
 
-auto almost_equal_relative(float a, float b, float epsilon) -> bool {
+auto absolute_error(float a, float b) -> float;
 
-    /* Remove a division-by-zero possibility */
-    if (a == b) {
-        return true;
-    }
-
-    /* We want to divide by the largest number to minimize roundoff error */
-    float relerr;
-    if (std::fabs(a) > std::fabs(b)) {
-        relerr = relative_error(b, a);
-    } else {
-        relerr = relative_error(a, b);
-    }
-
-    if (relerr <= epsilon) {
-        return true;
-    }
-
-    return false;
-}
+auto almost_equal_relative(float a, float b, float epsilon) -> bool;
 
 /*! \brief Retuns if a given value is between a low and high limit,
     inclusive. That is, the value may be less or equal to the highest
@@ -64,9 +37,7 @@ auto almost_equal_relative(float a, float b, float epsilon) -> bool {
     \param low The allowed limit low value
     \param high The allowed limit high value
 */
-auto is_between_inc(int val, int low, int high) -> bool {
-    return ((val >= low) && (val <= high));
-}
+auto is_between_inc(int val, int low, int high) -> bool;
 
 /*! \brief Retuns if a given value is between a low and high limit,
     exclusive. That is, the value must be strictly less that the
@@ -76,10 +47,8 @@ auto is_between_inc(int val, int low, int high) -> bool {
     \param low The unallowed limit low value
     \param high The unallowed limit high value
 */
-auto is_between_exc(int val, int low, int high) -> bool {
-    return ((val > low) && (val < high));
-}
+auto is_between_exc(int val, int low, int high) -> bool;
 
-static const float machine_epsilon = pow(10, -6);
+static const float machine_epsilon = pow(10, -6);;
 
 #endif /* HRT_UTILITY_FUNCTIONS_HPP */

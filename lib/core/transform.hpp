@@ -4,6 +4,7 @@
 #define HRT_CORE_TRANSFORM_HPP
 
 #include <cmath>
+#include "utility/matrix4x4.hpp"
 
 namespace hrt {
     namespace core {

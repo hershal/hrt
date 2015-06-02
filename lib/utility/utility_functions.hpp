@@ -56,4 +56,30 @@ auto almost_equal_relative(float a, float b, float epsilon) -> bool {
     return false;
 }
 
+/*! \brief Retuns if a given value is between a low and high limit,
+    inclusive. That is, the value may be less or equal to the highest
+    value and more than or equal to the lowest value.
+
+    \param val The value to clamp
+    \param low The allowed limit low value
+    \param high The allowed limit high value
+*/
+auto is_between_inc(int val, int low, int high) -> bool {
+    return ((val >= low) && (val <= high));
+}
+
+/*! \brief Retuns if a given value is between a low and high limit,
+    exclusive. That is, the value must be strictly less that the
+    highest value and strictly more than the lowest value.
+
+    \param val The value to clamp
+    \param low The unallowed limit low value
+    \param high The unallowed limit high value
+*/
+auto is_between_exc(int val, int low, int high) -> bool {
+    return ((val > low) && (val < high));
+}
+
+static const float machine_epsilon = pow(10, -6);
+
 #endif /* HRT_UTILITY_FUNCTIONS_HPP */

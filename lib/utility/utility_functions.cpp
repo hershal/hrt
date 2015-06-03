@@ -19,6 +19,10 @@ auto absolute_error(float a, float b) -> float {
     return std::fabs(a - b);
 }
 
+auto approximately_equal(float actual, float expected) -> bool {
+    return almost_equal_relative(actual, expected, machine_epsilon);
+}
+
 auto almost_equal_relative(float a, float b, float epsilon) -> bool {
 
     /* Remove a division-by-zero possibility */

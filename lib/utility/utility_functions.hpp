@@ -29,6 +29,8 @@ auto absolute_error(float a, float b) -> float;
 
 auto almost_equal_relative(float a, float b, float epsilon) -> bool;
 
+auto approximately_equal(float actual, float expected) -> bool;
+
 /*! \brief Retuns if a given value is between a low and high limit,
     inclusive. That is, the value may be less or equal to the highest
     value and more than or equal to the lowest value.

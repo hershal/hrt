@@ -59,4 +59,42 @@ BOOST_AUTO_TEST_CASE(copy_eye) {
     check_zero(m1);
 }
 
+BOOST_AUTO_TEST_CASE(det2x2_basic) {
+
+    float m[4][4];
+    hrt::matrix4x4::eye(m);
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 0), 1.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 2), 0.f));
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 0), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 1), 1.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2), 0.f));
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 0), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 1), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 2), 1.f));
+}
+
+BOOST_AUTO_TEST_CASE(det2x2_directed) {
+
+    float m[4][4] = {{2,  3,  5,  7},
+                     {11, 13, 17, 19},
+                     {23, 29, 31, 37},
+                     {41, 43, 47, 53}};
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 0), -7.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1), -14.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 2), -24.f));
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 0), 20.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 1), -90.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2), 40.f));
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 0), -200.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 1), 30.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 2), -96.f));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

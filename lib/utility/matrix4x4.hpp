@@ -28,6 +28,15 @@ namespace hrt {
           \param dst The matrix4x4 to copy to
         */
         auto copy(float src[4][4], float dst[4][4]) -> void;
+
+        /*! /brief Computes the determinant of a 2x2 submatrix within
+            a 4x4 matrix.
+
+            \param m The 4x4 matrix
+            \param m0 The row offset into the 2x2 submatrix within \m
+            \param m1 Their column offset into their 2x2 submatrix within \m
+        */
+        auto _det2x2(float m[4][4], int m0, int m1) -> float;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

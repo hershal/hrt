@@ -9,11 +9,7 @@
 
 BOOST_AUTO_TEST_SUITE(matrix4x4_tests)
 
-BOOST_AUTO_TEST_CASE(eye_naive) {
-
-    float m[4][4];
-    hrt::matrix4x4::eye(m);
-
+void check_eye(float m[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             if (i==j) {
@@ -23,6 +19,46 @@ BOOST_AUTO_TEST_CASE(eye_naive) {
             }
         }
     }
+}
+
+void check_zero(float m[4][4]) {
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
+            BOOST_CHECK(absolute_error(m[i][j], 0.f) < machine_epsilon);
+        }
+    }
+}
+
+BOOST_AUTO_TEST_CASE(eye) {
+
+    float m[4][4];
+    hrt::matrix4x4::eye(m);
+    check_eye(m);
+}
+
+BOOST_AUTO_TEST_CASE(zero) {
+
+    float m[4][4];
+    hrt::matrix4x4::zero(m);
+    check_zero(m);
+}
+
+BOOST_AUTO_TEST_CASE(copy_eye) {
+
+    float m0[4][4];
+    float m1[4][4];
+    hrt::matrix4x4::eye(m0);
+    hrt::matrix4x4::zero(m1);
+
+    hrt::matrix4x4::copy(m0, m1);
+    check_eye(m0);
+    check_eye(m1);
+
+    hrt::matrix4x4::zero(m0);
+    hrt::matrix4x4::eye(m1);
+    hrt::matrix4x4::copy(m0, m1);
+    check_zero(m0);
+    check_zero(m1);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

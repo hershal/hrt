@@ -10,16 +10,17 @@
 namespace hrt {
     namespace matrix4x4 {
 
-        static float identity_matrix[4][4] = {{1.f, 0.f, 0.f, 0.f},
-                                              {0.f, 1.f, 0.f, 0.f},
-                                              {0.f, 0.f, 1.f, 0.f},
-                                              {0.f, 0.f, 0.f, 1.f}};
-
         /*! \brief Set a given matrix4x4 to the 4x4 identity matrix.
 
           \param m The matrix to set to the identity matrix
         */
         auto eye(float m[4][4]) -> void;
+
+        /*! \brief Set a given matrix4x4 to the 4x4 zero matrix.
+
+          \param m The matrix to set to the zero matrix
+        */
+        auto zero(float m[4][4]) -> void;
 
         /*! \brief Copies a matrix4x4 to another matrix4x4.
 

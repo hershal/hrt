@@ -39,3 +39,36 @@ auto hrt::matrix4x4::_det3x3(float m[4][4], int m0, int m1) -> float {
         m[m0][m1+1] * hrt::matrix4x4::_det2x2(m, m0+1, m1, 1) +
         m[m0][m1] * hrt::matrix4x4::_det2x2(m, m0+1, m1+1);
 }
+
+auto hrt::matrix4x4::det(float m[4][4]) -> float {
+
+    float d = 1.f;
+    float m_tri[4][4];
+
+    hrt::matrix4x4::upper_triangle(m, m_tri);
+
+    for(std::size_t i = 0; i < 4; ++i) {
+        d *= m_tri[i][i];
+    }
+
+    return d;
+}
+
+auto hrt::matrix4x4::upper_triangle(float src[4][4], float dst[4][4]) -> void {
+
+    float ratio;
+    std::size_t i, j, k;
+
+    hrt::matrix4x4::copy(src, dst);
+
+    for(i = 0; i < 4; ++i) {
+        for(j = 0; j < 4; ++j) {
+            if(j > i) {
+                ratio = dst[j][i]/dst[i][i];
+                for(k = 0; k < 4; ++k) {
+                    dst[j][k] -= ratio * dst[i][k];
+                }
+            }
+        }
+    }
+}

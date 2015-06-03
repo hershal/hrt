@@ -51,6 +51,10 @@ namespace hrt {
             \param m1 Column offset into the 3x3 submatrix within \m
         */
         auto _det3x3(float m[4][4], int m0, int m1) -> float;
+
+        auto det(float m[4][4]) -> float;
+
+        auto upper_triangle(float src[4][4], float dst[4][4]) -> void;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

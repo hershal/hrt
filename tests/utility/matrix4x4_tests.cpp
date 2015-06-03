@@ -123,4 +123,23 @@ BOOST_AUTO_TEST_CASE(det3x3_directed) {
     BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 1), 240.f));
 }
 
+BOOST_AUTO_TEST_CASE(det4x4_basic) {
+
+    float m[4][4];
+    hrt::matrix4x4::eye(m);
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::det(m), 1.f));
+}
+
+BOOST_AUTO_TEST_CASE(det4x4_directed) {
+
+    float m[4][4] = {{2,  3,  5,  7},
+                     {11, 13, 17, 19},
+                     {23, 29, 31, 37},
+                     {41, 43, 47, 53}};
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::det(m), 880.f));
+}
+
+
 BOOST_AUTO_TEST_SUITE_END()

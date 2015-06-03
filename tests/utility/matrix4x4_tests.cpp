@@ -7,13 +7,17 @@
 
 BOOST_AUTO_TEST_SUITE(matrix4x4_tests)
 
+bool approximately_equal(float actual, float expected) {
+    return absolute_error(actual, expected) < machine_epsilon;
+}
+
 void check_eye(float m[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             if (i==j) {
-                BOOST_CHECK(absolute_error(m[i][j], 1.f) < machine_epsilon);
+                BOOST_CHECK(approximately_equal(m[i][j], 1.f));
             } else {
-                BOOST_CHECK(absolute_error(m[i][j], 0.f) < machine_epsilon);
+                BOOST_CHECK(approximately_equal(m[i][j], 0.f));
             }
         }
     }
@@ -22,7 +26,7 @@ void check_eye(float m[4][4]) {
 void check_zero(float m[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            BOOST_CHECK(absolute_error(m[i][j], 0.f) < machine_epsilon);
+            BOOST_CHECK(approximately_equal(m[i][j], 0.f));
         }
     }
 }

@@ -49,6 +49,6 @@ auto is_between_inc(int val, int low, int high) -> bool;
 */
 auto is_between_exc(int val, int low, int high) -> bool;
 
-static const float machine_epsilon = pow(10, -6);;
+static const float machine_epsilon = pow(10, -6);
 
 #endif /* HRT_UTILITY_FUNCTIONS_HPP */

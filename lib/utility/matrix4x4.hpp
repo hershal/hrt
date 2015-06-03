@@ -33,10 +33,24 @@ namespace hrt {
             a 4x4 matrix.
 
             \param m The 4x4 matrix
-            \param m0 The row offset into the 2x2 submatrix within \m
-            \param m1 Their column offset into their 2x2 submatrix within \m
+            \param m0 Row offset into the 2x2 submatrix within \m
+            \param m1 Column offset into the 2x2 submatrix within \m
+            \param colskip Number of columns to skip, mostly useful
+                when computing determinants for matrices bigger than
+                2x2
+            \param rowskip Number of rows to skip, mostly useful when
+                computing determinants for matrices bigger than 2x2
         */
-        auto _det2x2(float m[4][4], int m0, int m1) -> float;
+        auto _det2x2(float m[4][4], int m0, int m1, int colskip=0, int rowskip=0) -> float;
+
+        /*! /brief Computes the determinant of a 3x3 submatrix within
+            a 4x4 matrix.
+
+            \param m The 4x4 matrix
+            \param m0 Row offset into the 3x3 submatrix within \m
+            \param m1 Column offset into the 3x3 submatrix within \m
+        */
+        auto _det3x3(float m[4][4], int m0, int m1) -> float;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

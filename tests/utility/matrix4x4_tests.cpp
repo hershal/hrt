@@ -97,4 +97,30 @@ BOOST_AUTO_TEST_CASE(det2x2_directed) {
     BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 2), -96.f));
 }
 
+BOOST_AUTO_TEST_CASE(det3x3_basic) {
+
+    float m[4][4];
+    hrt::matrix4x4::eye(m);
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 0), 1.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 1), 0.f));
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 0), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 1), 1.f));
+}
+
+BOOST_AUTO_TEST_CASE(det3x3_directed) {
+
+    float m[4][4] = {{2,  3,  5,  7},
+                     {11, 13, 17, 19},
+                     {23, 29, 31, 37},
+                     {41, 43, 47, 53}};
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 0), 70.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 1), -160.f));
+
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 0), -600.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 1), 240.f));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

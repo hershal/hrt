@@ -5,8 +5,6 @@
 #include "utility/matrix4x4.hpp"
 #include "utility/utility_functions.hpp"
 
-#include <iostream>
-
 BOOST_AUTO_TEST_SUITE(matrix4x4_tests)
 
 void check_eye(float m[4][4]) {

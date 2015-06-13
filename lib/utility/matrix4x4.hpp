@@ -55,6 +55,10 @@ namespace hrt {
         auto det(float m[4][4]) -> float;
 
         auto upper_triangle(float src[4][4], float dst[4][4]) -> void;
+
+        auto scale(float src[4][4], float s) -> void;
+
+        auto scale(float src[4][4], float dst[4][4], float s) -> void;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

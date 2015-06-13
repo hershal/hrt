@@ -72,3 +72,22 @@ auto hrt::matrix4x4::upper_triangle(float src[4][4], float dst[4][4]) -> void {
         }
     }
 }
+
+auto hrt::matrix4x4::scale(float src[4][4], float dst[4][4], float s) -> void {
+
+    float *m0 = (float*)(src);
+    float *m1 = (float*)(dst);
+
+    for (std::size_t i=0; i<16; ++i) {
+        m1[i] = m0[i]*s;
+    }
+}
+
+auto hrt::matrix4x4::scale(float src[4][4], float s) -> void {
+
+    float *m = (float*)(src);
+
+    for (std::size_t i=0; i<16; ++i) {
+        m[i] *= s;
+    }
+}

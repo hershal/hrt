@@ -64,17 +64,22 @@ BOOST_AUTO_TEST_CASE(det2x2_basic) {
     float m[4][4];
     hrt::matrix4x4::eye(m);
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 0), 1.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1), 0.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 2), 0.f));
-
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 0), 0.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 1), 1.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2), 0.f));
-
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 0), 0.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 1), 0.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 2), 1.f));
+    for(std::size_t i=0; i<4; ++i) {
+        for(std::size_t j=0; j<4; ++j) {
+            for(std::size_t k=0; k<4; ++k) {
+                for(std::size_t l=0; l<4; ++l) {
+                    if (i==j || k==l) { continue; }
+                    if ((i == k) && (j == l)) {
+                        BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, i, j, k, l), 1.f));
+                    } else if ((i == l) && (j == k)) {
+                        BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, i, j, k, l), -1.f));
+                    } else {
+                        BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, i, j, k, l), 0.f));
+                    }
+                }
+            }
+        }
+    }
 }
 
 BOOST_AUTO_TEST_CASE(det2x2_directed) {
@@ -84,43 +89,80 @@ BOOST_AUTO_TEST_CASE(det2x2_directed) {
                      {23, 29, 31, 37},
                      {41, 43, 47, 53}};
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 0), -7.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1), -14.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 2), -24.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1, 0, 1), -7.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1, 1, 2), -14.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 0, 1, 2, 3), -24.f));
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 0), 20.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 1), -90.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2), 40.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2, 0, 1), 20.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2, 1, 2), -90.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 1, 2, 2, 3), 40.f));
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 0), -200.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 1), 30.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 2), -96.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 3, 0, 1), -200.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 3, 1, 2), 30.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, 2, 3, 2, 3), -96.f));
+
+    float f;
+    for(std::size_t i=0; i<4; ++i) {
+        for(std::size_t j=0; j<4; ++j) {
+            for(std::size_t k=0; k<4; ++k) {
+                for(std::size_t l=0; l<4; ++l) {
+                    f = m[i][k]*m[j][l] - m[i][l]*m[j][k];
+                    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det2x2(m, i, j, k, l), f));
+                }
+            }
+        }
+    }
 }
 
 BOOST_AUTO_TEST_CASE(det3x3_basic) {
 
-    float m[4][4];
-    hrt::matrix4x4::eye(m);
+    float mat[4][4];
+    hrt::matrix4x4::eye(mat);
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 0), 1.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 1), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 0, 1, 2, 0, 1, 2), 1.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 1, 2, 3, 1, 2, 3), 1.f));
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 0), 0.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 1), 1.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 0, 1, 2, 1, 2, 3), 0.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 1, 2, 3, 0, 1, 2), 0.f));
 }
 
 BOOST_AUTO_TEST_CASE(det3x3_directed) {
 
-    float m[4][4] = {{2,  3,  5,  7},
+    float mat[4][4] = {{2,  3,  5,  7},
                      {11, 13, 17, 19},
                      {23, 29, 31, 37},
                      {41, 43, 47, 53}};
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 0), 70.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 0, 1), -160.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 0, 1, 2, 0, 1, 2), 70.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 0, 1, 2, 1, 2, 3), -160.f));
 
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 0), -600.f));
-    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(m, 1, 1), 240.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 1, 2, 3, 0, 1, 2), -600.f));
+    BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 1, 2, 3, 1, 2, 3), 240.f));
+
+    float a, b, c, d, e, f, g, h, ii, x;
+       for(std::size_t i=0; i<4; ++i) {
+        for(std::size_t j=0; j<4; ++j) {
+            for(std::size_t k=0; k<4; ++k) {
+                for(std::size_t l=0; l<4; ++l) {
+                    for(std::size_t m=0; m<4; ++m) {
+                        for(std::size_t n=0; n<4; ++n) {
+                            a = mat[i][l];
+                            b = mat[i][m];
+                            c = mat[i][n];
+                            d = mat[j][l];
+                            e = mat[j][m];
+                            f = mat[j][n];
+                            g = mat[k][l];
+                            h = mat[k][m];
+                            ii = mat[k][n];
+                            x = a*e*ii + b*f*g + c*d*h - c*e*g - b*d*ii - a*f*h;
+                            BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, i, j, k, l, m, n), x));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 BOOST_AUTO_TEST_CASE(det4x4_basic) {

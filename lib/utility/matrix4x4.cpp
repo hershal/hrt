@@ -23,22 +23,29 @@ auto hrt::matrix4x4::copy(float src[4][4], float dst[4][4]) -> void {
     memcpy(dst, src, 16*sizeof(float));
 }
 
-auto hrt::matrix4x4::_det2x2(float m[4][4], int m0, int m1, int colskip, int rowskip) -> float {
+auto hrt::matrix4x4::_det2x2(float m[4][4], std::size_t r0, std::size_t r1, std::size_t c0, std::size_t c1) -> float {
 
-    BOOST_ASSERT_MSG(m0 >= 0 && m0 <= 2, "2x2 submatrix row offset impossible in a 4x4 matrix");
-    BOOST_ASSERT_MSG(m1 >= 0 && m1 <= 2, "2x2 submatrix col offset impossible in a 4x4 matrix");
+    BOOST_ASSERT_MSG((r0 >= 0 && r0 <= 3) && (r1 >= 0 && r1 <= 3),
+                     "2x2 submatrix row impossible in a 4x4 matrix");
+    BOOST_ASSERT_MSG((c0 >= 0 && c0 <= 3) && (c1 >= 0 && c1 <= 3),
+                     "2x2 submatrix col impossible in a 4x4 matrix");
 
-    return m[m0][m1] * m[m0+1+rowskip][m1+1+colskip] - m[m0][m1+1+colskip] * m[m0+1+rowskip][m1];
+    return m[r0][c0]*m[r1][c1] - m[r0][c1]*m[r1][c0];
 }
 
-auto hrt::matrix4x4::_det3x3(float m[4][4], int m0, int m1) -> float {
+auto hrt::matrix4x4::_det3x3(float m[4][4],
+                             std::size_t r0, std::size_t r1, std::size_t r2,
+                             std::size_t c0, std::size_t c1, std::size_t c2)
+    -> float {
 
-    BOOST_ASSERT_MSG(m0 >= 0 && m0 <= 1, "3x3 submatrix row offset impossible in a 4x4 matrix");
-    BOOST_ASSERT_MSG(m1 >= 0 && m1 <= 1, "3x3 submatrix col offset impossible in a 4x4 matrix");
+    BOOST_ASSERT_MSG((r0 >= 0 && r0 <= 3) && (r1 >= 0 && r1 <= 3),
+                     "3x3 submatrix row impossible in a 4x4 matrix");
+    BOOST_ASSERT_MSG((c0 >= 0 && c0 <= 3) && (c1 >= 0 && c1 <= 3),
+                     "3x3 submatrix col impossible in a 4x4 matrix");
 
-    return m[m0][m1+2] * hrt::matrix4x4::_det2x2(m, m0+1, m1) -
-        m[m0][m1+1] * hrt::matrix4x4::_det2x2(m, m0+1, m1, 1) +
-        m[m0][m1] * hrt::matrix4x4::_det2x2(m, m0+1, m1+1);
+    return m[r0][c0] * hrt::matrix4x4::_det2x2(m, r1, r2, c1, c2) -
+        m[r0][c1] * hrt::matrix4x4::_det2x2(m, r1, r2, c0, c2) +
+        m[r0][c2] * hrt::matrix4x4::_det2x2(m, r1, r2, c0, c1);
 }
 
 auto hrt::matrix4x4::det(float m[4][4]) -> float {

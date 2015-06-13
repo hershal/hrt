@@ -56,6 +56,13 @@ namespace hrt {
 
         auto upper_triangle(float src[4][4], float dst[4][4]) -> void;
 
+        /*! /brief Computes the inverse of a matrix.
+
+          \param src The source matrix to compute the determinant of
+          \param dst The matrix to store the computed determinant into
+        */
+        auto inverse(float src[4][4], float dst[4][4]) -> void;
+
         auto scale(float src[4][4], float s) -> void;
 
         auto scale(float src[4][4], float dst[4][4], float s) -> void;

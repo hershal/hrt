@@ -1,4 +1,5 @@
 #include "utility/matrix4x4.hpp"
+#include "utility/utility_functions.hpp"
 #include <boost/assert.hpp>
 
 static float identity_matrix[4][4] =
@@ -71,6 +72,17 @@ auto hrt::matrix4x4::upper_triangle(float src[4][4], float dst[4][4]) -> void {
             }
         }
     }
+}
+
+auto hrt::matrix4x4::inverse(float src[4][4], float dst[4][4]) -> void {
+
+    float m4det = det(src);
+    if (std::fabs(m4det) < machine_epsilon) {
+        scale(src, 0.f);
+    }
+
+    /* STUB */
+    (void)dst;
 }
 
 auto hrt::matrix4x4::scale(float src[4][4], float dst[4][4], float s) -> void {

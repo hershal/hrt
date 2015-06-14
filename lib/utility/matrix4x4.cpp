@@ -19,11 +19,13 @@ auto hrt::matrix4x4::zero(float m[4][4]) -> void {
     }
 }
 
-auto hrt::matrix4x4::copy(float src[4][4], float dst[4][4]) -> void {
+auto hrt::matrix4x4::copy(const float src[4][4], float dst[4][4]) -> void {
     memcpy(dst, src, 16*sizeof(float));
 }
 
-auto hrt::matrix4x4::_det2x2(float m[4][4], std::size_t r0, std::size_t r1, std::size_t c0, std::size_t c1) -> float {
+auto hrt::matrix4x4::_det2x2(const float m[4][4],
+                             std::size_t r0, std::size_t r1,
+                             std::size_t c0, std::size_t c1) -> float {
 
     BOOST_ASSERT_MSG((r0 <= 3) && (r1 <= 3),
                      "2x2 submatrix row impossible in a 4x4 matrix");
@@ -33,7 +35,7 @@ auto hrt::matrix4x4::_det2x2(float m[4][4], std::size_t r0, std::size_t r1, std:
     return m[r0][c0]*m[r1][c1] - m[r0][c1]*m[r1][c0];
 }
 
-auto hrt::matrix4x4::_det3x3(float m[4][4],
+auto hrt::matrix4x4::_det3x3(const float m[4][4],
                              std::size_t r0, std::size_t r1, std::size_t r2,
                              std::size_t c0, std::size_t c1, std::size_t c2)
     -> float {
@@ -48,7 +50,7 @@ auto hrt::matrix4x4::_det3x3(float m[4][4],
         m[r0][c2] * hrt::matrix4x4::_det2x2(m, r1, r2, c0, c1);
 }
 
-auto hrt::matrix4x4::det(float m[4][4]) -> float {
+auto hrt::matrix4x4::det(const float m[4][4]) -> float {
 
     float d = 1.f;
     float m_tri[4][4];
@@ -62,7 +64,8 @@ auto hrt::matrix4x4::det(float m[4][4]) -> float {
     return d;
 }
 
-auto hrt::matrix4x4::upper_triangle(float src[4][4], float dst[4][4]) -> void {
+auto hrt::matrix4x4::upper_triangle(const float src[4][4],
+                                    float dst[4][4]) -> void {
 
     float ratio;
     std::size_t i, j, k;
@@ -81,7 +84,8 @@ auto hrt::matrix4x4::upper_triangle(float src[4][4], float dst[4][4]) -> void {
     }
 }
 
-auto hrt::matrix4x4::inverse(float src[4][4], float dst[4][4]) -> void {
+auto hrt::matrix4x4::inverse(const float src[4][4],
+                             float dst[4][4]) -> void {
 
     float m4det = det(src);
 
@@ -117,7 +121,8 @@ auto hrt::matrix4x4::inverse(float src[4][4], float dst[4][4]) -> void {
     scale(dst, 1/m4det);
 }
 
-auto hrt::matrix4x4::scale(float src[4][4], float dst[4][4], float s) -> void {
+auto hrt::matrix4x4::scale(const float src[4][4],
+                           float dst[4][4], float s) -> void {
 
     float *m0 = (float*)(src);
     float *m1 = (float*)(dst);

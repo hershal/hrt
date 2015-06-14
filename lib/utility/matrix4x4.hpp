@@ -30,7 +30,7 @@ namespace hrt {
           \param dst The matrix4x4 to copy to
           \returns void
         */
-        auto copy(float src[4][4], float dst[4][4]) -> void;
+        auto copy(const float src[4][4], float dst[4][4]) -> void;
 
         /*! /brief Computes the determinant of a 2x2 submatrix within
             a 4x4 matrix.
@@ -42,7 +42,9 @@ namespace hrt {
             \param c1 The second col of the 2x2 submatrix
             \returns The value of the determinant
         */
-        auto _det2x2(float m[4][4], std::size_t r0, std::size_t r1, std::size_t c0, std::size_t c1) -> float;
+        auto _det2x2(const float m[4][4],
+                     std::size_t r0, std::size_t r1,
+                     std::size_t c0, std::size_t c1) -> float;
 
         /*! /brief Computes the determinant of a 3x3 submatrix within
             a 4x4 matrix.
@@ -56,7 +58,7 @@ namespace hrt {
             \param c2 The third col of the 3x3 submatrix
             \returns The value of the determinant
         */
-        auto _det3x3(float m[4][4],
+        auto _det3x3(const float m[4][4],
                      std::size_t r0, std::size_t r1, std::size_t r2,
                      std::size_t c0, std::size_t c1, std::size_t c2) -> float;
 
@@ -64,9 +66,9 @@ namespace hrt {
           \param m The 4x4 matrix
           \returns The value of the determinant
         */
-        auto det(float m[4][4]) -> float;
+        auto det(const float m[4][4]) -> float;
 
-        auto upper_triangle(float src[4][4], float dst[4][4]) -> void;
+        auto upper_triangle(const float src[4][4], float dst[4][4]) -> void;
 
         /*! /brief Computes the inverse of a matrix.
 
@@ -74,11 +76,11 @@ namespace hrt {
           \param dst The matrix to store the computed determinant into
           \returns void
         */
-        auto inverse(float src[4][4], float dst[4][4]) -> void;
+        auto inverse(const float src[4][4], float dst[4][4]) -> void;
+
+        auto scale(const float src[4][4], float dst[4][4], float s) -> void;
 
         auto scale(float src[4][4], float s) -> void;
-
-        auto scale(float src[4][4], float dst[4][4], float s) -> void;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

@@ -84,12 +84,37 @@ auto hrt::matrix4x4::upper_triangle(float src[4][4], float dst[4][4]) -> void {
 auto hrt::matrix4x4::inverse(float src[4][4], float dst[4][4]) -> void {
 
     float m4det = det(src);
+
+    /* zero-cancel the dst matrix if src's determinant is zero (the
+       src matrix is singular).*/
     if (std::fabs(m4det) < machine_epsilon) {
-        scale(src, 0.f);
+        scale(src, dst, 0.f);
     }
 
-    /* STUB */
-    (void)dst;
+    /* Use the adjugate formula to calculate the inverse of the
+       matrix. */
+    size_t r[3], c[3], counter, rr, cc;
+    for (std::size_t i=0; i<4; ++i) {
+        for(std::size_t j=0; j<4; ++j) {
+
+            rr = 0;
+            cc = 0;
+            for (counter=0; counter<3; ++counter) {
+                /* Optimization: Note that i and j are swapped
+                   here. This is done to remove the transpose
+                   operation normally required for the adjugate
+                   forumla. */
+                r[counter] = rr == j ? ++rr : rr;
+                c[counter] = cc == i ? ++cc : cc;
+                ++cc; ++rr;
+            }
+
+            dst[i][j] = (((i+j)%2==1)*(-2.f) + 1) *
+                _det3x3(src, r[0], r[1], r[2], c[0], c[1], c[2]);
+        }
+    }
+
+    scale(dst, 1/m4det);
 }
 
 auto hrt::matrix4x4::scale(float src[4][4], float dst[4][4], float s) -> void {

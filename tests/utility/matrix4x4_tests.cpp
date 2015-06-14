@@ -5,15 +5,17 @@
 #include "utility/matrix4x4.hpp"
 #include "utility/utility_functions.hpp"
 
+#include <iostream>
+
 BOOST_AUTO_TEST_SUITE(matrix4x4_tests)
 
 void check_eye(float m[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             if (i==j) {
-                BOOST_CHECK(approximately_equal(m[i][j], 1.f));
+                BOOST_REQUIRE(approximately_equal(m[i][j], 1.f));
             } else {
-                BOOST_CHECK(approximately_equal(m[i][j], 0.f));
+                BOOST_REQUIRE(approximately_equal(m[i][j], 0.f));
             }
         }
     }
@@ -22,7 +24,16 @@ void check_eye(float m[4][4]) {
 void check_zero(float m[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            BOOST_CHECK(approximately_equal(m[i][j], 0.f));
+            BOOST_REQUIRE(approximately_equal(m[i][j], 0.f));
+        }
+    }
+}
+
+/* check if \m is approximately equal to \r */
+void check_matrix(float m[4][4], float r[4][4]) {
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
+            BOOST_REQUIRE(approximately_equal(m[i][j], r[i][j]));
         }
     }
 }
@@ -183,5 +194,38 @@ BOOST_AUTO_TEST_CASE(det4x4_directed) {
     BOOST_CHECK(approximately_equal(hrt::matrix4x4::det(m), 880.f));
 }
 
+BOOST_AUTO_TEST_CASE(inverse_0) {
+
+    float m[4][4] = {{1, 0, 0, 1},
+                     {0, 2, 1, 2},
+                     {2, 1, 0, 1},
+                     {2, 0, 1, 4}};
+    float mi[4][4];
+
+    float mi_ref[4][4] = {{-2,  -1.f/2,  1,   1.f/2},
+                          {1,   1.f/2,   0,   -1.f/2},
+                          {-8,  -1,      2,   2},
+                          {3,   1.f/2,   -1,  -1.f/2}};
+
+    hrt::matrix4x4::inverse(m, mi);
+    check_matrix(mi, mi_ref);
+}
+
+BOOST_AUTO_TEST_CASE(inverse_1) {
+
+    float m[4][4] = {{2,  3,  5,  7},
+                     {11, 13, 17, 19},
+                     {23, 29, 31, 37},
+                     {41, 43, 47, 53}};
+    float mi[4][4];
+
+    float mi_ref[4][4] = {{3.f/11,    -12.f/55,   -1.f/5,   2.f/11},
+                          {-5.f/11,   -2.f/55,    3.f/10,   -3.f/22},
+                          {-13.f/22,  307.f/440,  -1.f/10,  -9.f/88},
+                          {15.f/22,   -37.f/88,   0,        7.f/88}};
+
+    hrt::matrix4x4::inverse(m, mi);
+    check_matrix(mi, mi_ref);
+}
 
 BOOST_AUTO_TEST_SUITE_END()

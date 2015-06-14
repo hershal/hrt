@@ -1,4 +1,7 @@
 * HRT
 Hershal's Ray Tracer
 
-Based loosly on PBRT.
+[[https://travis-ci.org/r2labs/QuARC][file:https://travis-ci.org/hershal/hrt.svg?branch=master]]
+[[https://coveralls.io/r/r2labs/QuARC][file:https://coveralls.io/repos/hershal/hrt/badge.svg]]
+
+Based on PBRT.

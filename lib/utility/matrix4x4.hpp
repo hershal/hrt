@@ -17,6 +17,13 @@ namespace hrt {
         */
         auto identity(float m[4][4]) -> void;
 
+        /*! \brief Returns whether \m is the identity matrix
+
+          \param m The matrix to compare to the identity matrix
+          \returns
+        */
+        auto identityp(float m[4][4]) -> bool;
+
         /*! \brief Set a given matrix4x4 to the 4x4 zero matrix.
 
           \param m The matrix to set to the zero matrix
@@ -81,6 +88,15 @@ namespace hrt {
         auto scale(const float src[4][4], float dst[4][4], float s) -> void;
 
         auto scale(float src[4][4], float s) -> void;
+
+        /*! \brief Returns whether \m0 is approximately equal to \m1
+
+           \param m0 the first matrix to compare against
+           \param m1 the second martrix to compare against
+           \returns if the matrices are approximately equal to each other
+        */
+        auto equalp(float m0[4][4], float m1[4][4]) -> bool;
+
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

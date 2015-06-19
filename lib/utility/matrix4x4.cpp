@@ -12,6 +12,10 @@ auto hrt::matrix4x4::identity(float m[4][4]) -> void {
     memcpy(m, identity_matrix, 16*sizeof(float));
 }
 
+auto hrt::matrix4x4::identityp(float m[4][4]) -> bool {
+    return hrt::matrix4x4::equalp(m, identity_matrix);
+}
+
 auto hrt::matrix4x4::zero(float m[4][4]) -> void {
     float *f = (float*)(m);
     for (uint8_t i=0; i<16; ++i) {
@@ -139,4 +143,16 @@ auto hrt::matrix4x4::scale(float src[4][4], float s) -> void {
     for (std::size_t i=0; i<16; ++i) {
         m[i] *= s;
     }
+}
+
+auto hrt::matrix4x4::equalp(float m0[4][4], float m1[4][4]) -> bool {
+
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
+            if (!::approximately_equal(m0[i][j], m1[i][j])) {
+                return false;
+            }
+        }
+    }
+    return true;
 }

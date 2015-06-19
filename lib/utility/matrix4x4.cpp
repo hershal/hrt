@@ -8,7 +8,7 @@ static float identity_matrix[4][4] =
      {0.f, 0.f, 1.f, 0.f},
      {0.f, 0.f, 0.f, 1.f}};
 
-auto hrt::matrix4x4::eye(float m[4][4]) -> void {
+auto hrt::matrix4x4::identity(float m[4][4]) -> void {
     memcpy(m, identity_matrix, 16*sizeof(float));
 }
 

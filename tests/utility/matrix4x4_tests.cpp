@@ -9,7 +9,7 @@
 
 BOOST_AUTO_TEST_SUITE(matrix4x4_tests)
 
-void check_eye(float m[4][4]) {
+void check_identity(float m[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             if (i==j) {
@@ -38,11 +38,11 @@ void check_matrix(float m[4][4], float r[4][4]) {
     }
 }
 
-BOOST_AUTO_TEST_CASE(eye) {
+BOOST_AUTO_TEST_CASE(identity) {
 
     float m[4][4];
-    hrt::matrix4x4::eye(m);
-    check_eye(m);
+    hrt::matrix4x4::identity(m);
+    check_identity(m);
 }
 
 BOOST_AUTO_TEST_CASE(zero) {
@@ -52,19 +52,19 @@ BOOST_AUTO_TEST_CASE(zero) {
     check_zero(m);
 }
 
-BOOST_AUTO_TEST_CASE(copy_eye) {
+BOOST_AUTO_TEST_CASE(copy_identity) {
 
     float m0[4][4];
     float m1[4][4];
-    hrt::matrix4x4::eye(m0);
+    hrt::matrix4x4::identity(m0);
     hrt::matrix4x4::zero(m1);
 
     hrt::matrix4x4::copy(m0, m1);
-    check_eye(m0);
-    check_eye(m1);
+    check_identity(m0);
+    check_identity(m1);
 
     hrt::matrix4x4::zero(m0);
-    hrt::matrix4x4::eye(m1);
+    hrt::matrix4x4::identity(m1);
     hrt::matrix4x4::copy(m0, m1);
     check_zero(m0);
     check_zero(m1);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(copy_eye) {
 BOOST_AUTO_TEST_CASE(det2x2_basic) {
 
     float m[4][4];
-    hrt::matrix4x4::eye(m);
+    hrt::matrix4x4::identity(m);
 
     for(std::size_t i=0; i<4; ++i) {
         for(std::size_t j=0; j<4; ++j) {
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(det2x2_directed) {
 BOOST_AUTO_TEST_CASE(det3x3_basic) {
 
     float mat[4][4];
-    hrt::matrix4x4::eye(mat);
+    hrt::matrix4x4::identity(mat);
 
     BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 0, 1, 2, 0, 1, 2), 1.f));
     BOOST_CHECK(approximately_equal(hrt::matrix4x4::_det3x3(mat, 1, 2, 3, 1, 2, 3), 1.f));
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(det3x3_directed) {
 BOOST_AUTO_TEST_CASE(det4x4_basic) {
 
     float m[4][4];
-    hrt::matrix4x4::eye(m);
+    hrt::matrix4x4::identity(m);
 
     BOOST_CHECK(approximately_equal(hrt::matrix4x4::det(m), 1.f));
 }

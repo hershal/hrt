@@ -15,7 +15,7 @@ namespace hrt {
           \param m The matrix to set to the identity matrix
           \returns void
         */
-        auto eye(float m[4][4]) -> void;
+        auto identity(float m[4][4]) -> void;
 
         /*! \brief Set a given matrix4x4 to the 4x4 zero matrix.
 

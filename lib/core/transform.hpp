@@ -12,8 +12,8 @@ namespace hrt {
         class transform {
         public:
             transform() {
-                hrt::matrix4x4::eye(mat);
-                hrt::matrix4x4::eye(mat_inv);
+                hrt::matrix4x4::identity(mat);
+                hrt::matrix4x4::identity(mat_inv);
             }
 
             transform(const float m[4][4]) {

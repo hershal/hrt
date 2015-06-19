@@ -39,7 +39,7 @@ namespace hrt {
         */
         auto copy(const float src[4][4], float dst[4][4]) -> void;
 
-        /*! /brief Computes the determinant of a 2x2 submatrix within
+        /*! \brief Computes the determinant of a 2x2 submatrix within
             a 4x4 matrix.
 
             \param m The 4x4 matrix
@@ -53,7 +53,7 @@ namespace hrt {
                      std::size_t r0, std::size_t r1,
                      std::size_t c0, std::size_t c1) -> float;
 
-        /*! /brief Computes the determinant of a 3x3 submatrix within
+        /*! \brief Computes the determinant of a 3x3 submatrix within
             a 4x4 matrix.
 
             \param m The 4x4 matrix
@@ -69,7 +69,7 @@ namespace hrt {
                      std::size_t r0, std::size_t r1, std::size_t r2,
                      std::size_t c0, std::size_t c1, std::size_t c2) -> float;
 
-        /*! /brief Computes the determinant of a 4x4 matrix
+        /*! \brief Computes the determinant of a 4x4 matrix
           \param m The 4x4 matrix
           \returns The value of the determinant
         */
@@ -77,7 +77,7 @@ namespace hrt {
 
         auto upper_triangle(const float src[4][4], float dst[4][4]) -> void;
 
-        /*! /brief Computes the inverse of a matrix.
+        /*! \brief Computes the inverse of a matrix.
 
           \param src The source matrix to compute the determinant of
           \param dst The matrix to store the computed determinant into
@@ -85,8 +85,21 @@ namespace hrt {
         */
         auto inverse(const float src[4][4], float dst[4][4]) -> void;
 
+        /*! \brief Scale a matrix by a float into another matrix
+
+          \param src The matrix to scale
+          \param dst The matrix to store the scaled values
+          \param s The floating point value to scale by
+          \returns \dst
+        */
         auto scale(const float src[4][4], float dst[4][4], float s) -> void;
 
+        /*! \brief Scale a matrix by a float in-place
+
+          \param src The matrix to scale in-place
+          \param s The floating point value to scale by
+          \returns none; \src is scaled in-place
+        */
         auto scale(float src[4][4], float s) -> void;
 
         /*! \brief Returns whether \m0 is approximately equal to \m1

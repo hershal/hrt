@@ -120,3 +120,20 @@ auto bb_union(const hrt::core::bounding_box *b,
     return ret;
 }
 
+/*! \brief Construct a new bounding box which encloses two existing
+  bounding boxes. */
+auto bb_union
+(const hrt::core::bounding_box &b1, const hrt::core::bounding_box &b2) -> hrt::core::bounding_box {
+
+    hrt::core::bounding_box returning_box;
+
+    returning_box.min.x = fmin(b1.min.x, b2.min.x);
+    returning_box.min.y = fmin(b1.min.y, b2.min.y);
+    returning_box.min.z = fmin(b1.min.z, b2.min.z);
+
+    returning_box.max.x = fmax(b1.max.x, b2.max.x);
+    returning_box.max.y = fmax(b1.max.y, b2.max.y);
+    returning_box.max.z = fmax(b1.max.z, b2.max.z);
+
+    return returning_box;
+}

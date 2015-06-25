@@ -1,4 +1,4 @@
-set (core-src bounding_box.cpp normal.cpp point.cpp vector.cpp)
+set (core-src bounding_box.cpp normal.cpp point.cpp vector.cpp transform.cpp)
 
 include_directories("../")
 

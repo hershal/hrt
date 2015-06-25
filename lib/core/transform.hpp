@@ -4,6 +4,7 @@
 #define HRT_CORE_TRANSFORM_HPP
 
 #include <cmath>
+#include "core/vector.hpp"
 #include "utility/matrix4x4.hpp"
 
 namespace hrt {
@@ -30,7 +31,7 @@ namespace hrt {
 
             bool swaps_handedness(void);
 
-            friend auto inverse(const transform* t) -> transform;
+            auto inverse(const transform* t) -> transform;
 
             auto rotate(float rads, const vector *axis) -> transform;
 

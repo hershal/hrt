@@ -30,7 +30,7 @@ namespace hrt {
 
             bool swaps_handedness(void);
 
-            friend auto inverse(const transform* t) -> hrt::core::transform;
+            friend auto inverse(const transform* t) -> transform;
 
         private:
 

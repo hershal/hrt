@@ -32,6 +32,8 @@ namespace hrt {
 
             friend auto inverse(const transform* t) -> transform;
 
+            auto rotate(float rads, const vector *axis) -> transform;
+
         private:
 
             /*! \brief The transformation matrix.

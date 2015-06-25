@@ -228,4 +228,37 @@ BOOST_AUTO_TEST_CASE(inverse_1) {
     check_matrix(mi, mi_ref);
 }
 
+BOOST_AUTO_TEST_CASE(transpose_src_dst) {
+
+    float m[4][4] = {{2,  3,  5,  7},
+                     {11, 13, 17, 19},
+                     {23, 29, 31, 37},
+                     {41, 43, 47, 53}};
+    float mt[4][4];
+
+    float mt_ref[4][4] = {{2, 11, 23, 41},
+                          {3, 13, 29, 43},
+                          {5, 17, 31, 47},
+                          {7, 19, 37, 53}};
+
+    hrt::matrix4x4::transpose(m, mt);
+    check_matrix(mt, mt_ref);
+}
+
+BOOST_AUTO_TEST_CASE(transpose_inplace) {
+
+    float m[4][4] = {{2,  3,  5,  7},
+                     {11, 13, 17, 19},
+                     {23, 29, 31, 37},
+                     {41, 43, 47, 53}};
+
+    float mt_ref[4][4] = {{2, 11, 23, 41},
+                          {3, 13, 29, 43},
+                          {5, 17, 31, 47},
+                          {7, 19, 37, 53}};
+
+    hrt::matrix4x4::transpose(m);
+    check_matrix(m, mt_ref);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

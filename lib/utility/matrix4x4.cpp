@@ -156,3 +156,23 @@ auto hrt::matrix4x4::equalp(float m0[4][4], float m1[4][4]) -> bool {
     }
     return true;
 }
+
+auto hrt::matrix4x4::transpose(float src[4][4], float dst[4][4]) -> void {
+
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
+            dst[i][j] = src[j][i];
+        }
+    }
+}
+auto hrt::matrix4x4::transpose(float m[4][4]) -> void {
+
+    float tmp;
+    for (int i=0; i<3; ++i) {
+        for (int j=i+1; j<4; ++j) {
+            tmp = m[i][j];
+            m[i][j] = m[j][i];
+            m[j][i] = tmp;
+        }
+    }
+}

@@ -102,6 +102,21 @@ namespace hrt {
         */
         auto scale(float src[4][4], float s) -> void;
 
+        /*! \brief Transpose a source matrix into a destination matrix
+
+          \param src The matrix to tranpose
+          \param dst The matrix to store the transposed \src
+          \returns none
+         */
+        auto transpose(float src[4][4], float dst[4][4]) -> void;
+
+        /*! \brief Transpose a matrix inplace
+
+          \param m The matrix to tranpose
+          \returns none
+        */
+        auto transpose(float src[4][4]) -> void;
+
         /*! \brief Returns whether \m0 is approximately equal to \m1
 
            \param m0 the first matrix to compare against

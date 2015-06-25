@@ -26,6 +26,8 @@ namespace hrt {
                 hrt::matrix4x4::copy(m_inv, mat_inv);
             }
 
+            #include "common_matrices.hpp"
+
             bool swaps_handedness(void);
 
             friend auto inverse(const transform* t) -> hrt::core::transform;

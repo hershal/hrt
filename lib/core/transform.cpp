@@ -3,6 +3,10 @@
 #include "transform.hpp"
 #include "geometry.hpp"
 
+bool hrt::core::transform::swaps_handedness() const {
+    return matrix4x4::_det3x3(mat, 0, 1, 2, 0, 1, 2) < 0.f;
+}
+
 auto hrt::core::transform::inverse(const hrt::core::transform* t)
     -> hrt::core::transform {
     return hrt::core::transform(t->mat_inv, t->mat);

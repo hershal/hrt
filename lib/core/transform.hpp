@@ -31,7 +31,7 @@ namespace hrt {
 
             #include "common_matrices.hpp"
 
-            bool swaps_handedness(void);
+            auto swaps_handedness(void) const -> bool;
 
             auto inverse(const transform* t) -> transform;
 

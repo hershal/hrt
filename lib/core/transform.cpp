@@ -136,3 +136,15 @@ auto hrt::core::transform::operator()
     bb.bb_union(&p7);
     return bb;
 }
+
+auto hrt::core::transform::operator*(const hrt::core::transform &t) const
+    -> hrt::core::transform {
+
+    float m[4][4];
+    float m_inv[4][4];
+
+    matrix4x4::mul(mat, t.mat, m);
+    matrix4x4::mul(mat_inv, t.mat_inv, m_inv);
+
+    return transform(m, m_inv);
+}

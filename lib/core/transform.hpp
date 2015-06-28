@@ -48,6 +48,8 @@ namespace hrt {
 
           auto operator()(const bounding_box &b) const -> bounding_box;
 
+          auto operator*(const transform &t) const -> transform;
+
         private:
 
             /*! \brief The transformation matrix.

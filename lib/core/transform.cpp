@@ -111,3 +111,28 @@ auto hrt::core::transform::operator()
     (*this)(rr->origin, &(rr->origin));
     (*this)(rr->direction, &(rr->direction));
 }
+
+/* naive implementation */
+auto hrt::core::transform::operator()
+    (const hrt::core::bounding_box &b) const
+    -> hrt::core::bounding_box {
+
+    point p0 = (*this)(point(b.min.x, b.min.y, b.min.z));
+    point p1 = (*this)(point(b.min.x, b.min.y, b.max.z));
+    point p2 = (*this)(point(b.min.x, b.max.y, b.min.z));
+    point p3 = (*this)(point(b.min.x, b.max.y, b.max.z));
+    point p4 = (*this)(point(b.max.x, b.min.y, b.min.z));
+    point p5 = (*this)(point(b.max.x, b.min.y, b.max.z));
+    point p6 = (*this)(point(b.max.x, b.max.y, b.min.z));
+    point p7 = (*this)(point(b.max.x, b.max.y, b.max.z));
+
+    hrt::core::bounding_box bb(&p0);
+    bb.bb_union(&p1);
+    bb.bb_union(&p2);
+    bb.bb_union(&p3);
+    bb.bb_union(&p4);
+    bb.bb_union(&p5);
+    bb.bb_union(&p6);
+    bb.bb_union(&p7);
+    return bb;
+}

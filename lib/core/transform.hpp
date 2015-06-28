@@ -46,6 +46,8 @@ namespace hrt {
           auto operator()(const ray &r) const -> ray;
           auto operator()(const ray &r, ray *rr) const -> void;
 
+          auto operator()(const bounding_box &b) const -> bounding_box;
+
         private:
 
             /*! \brief The transformation matrix.

@@ -125,7 +125,7 @@ namespace hrt {
         */
         auto equalp(float m0[4][4], float m1[4][4]) -> bool;
 
-        /*! \brief Perform a component-wise multiplication
+        /*! \brief Perform a matrix-matrix multiplication
          \param m0 The first matrix to multiply.
          \param m1 The second matrix to multiply.
          \param dst The matrix to store the result into.

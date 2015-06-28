@@ -41,6 +41,10 @@ namespace hrt {
 
           auto operator()(const point &pt, point *p) const -> void;
 
+          auto operator()(const hrt::core:vector &vec) const -> vector;
+
+          auto operator()(const vector &vec, vector *v) const -> void;
+
         private:
 
             /*! \brief The transformation matrix.

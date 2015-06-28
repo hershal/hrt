@@ -66,3 +66,23 @@ auto hrt::core::transform::operator()(const hrt::core::point &pt, hrt::core::poi
 
     *p *= 1/w;
 }
+
+auto hrt::core::transform::operator()(const hrt::core::vector &vec) const
+    -> hrt::core::vector {
+    float x = vec.x, y = vec.y, z = vec.z;
+
+    float xv = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];
+    float yv = mat[1][0]*x + mat[1][1]*y + mat[1][2]*z + mat[1][3];
+    float zv = mat[2][0]*x + mat[2][1]*y + mat[2][2]*z + mat[2][3];
+
+    return hrt::core::vector(xv, yv, zv);
+}
+
+auto hrt::core::transform::operator()(const hrt::core::vector &vec, hrt::core::vector *v) const
+    -> void {
+    float x = vec.x, y = vec.y, z = vec.z;
+
+    v->x = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];
+    v->y = mat[1][0]*x + mat[1][1]*y + mat[1][2]*z + mat[1][3];
+    v->z = mat[2][0]*x + mat[2][1]*y + mat[2][2]*z + mat[2][3];
+}

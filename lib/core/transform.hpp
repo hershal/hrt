@@ -37,6 +37,10 @@ namespace hrt {
 
             auto rotate(float rads, const vector *axis) -> transform;
 
+          auto operator()(const point &p) const -> point;
+
+          auto operator()(const point &pt, point *p) const -> void;
+
         private:
 
             /*! \brief The transformation matrix.

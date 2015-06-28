@@ -42,3 +42,27 @@ auto hrt::core::transform::rotate(float rads, const hrt::core::vector* axis)
 
     return hrt::core::transform(m, mt);
 }
+
+auto hrt::core::transform::operator()(const hrt::core::point &pt) const
+    -> hrt::core::point {
+    float x = pt.x, y = pt.y, z = pt.z;
+
+    float xp = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];
+    float yp = mat[1][0]*x + mat[1][1]*y + mat[1][2]*z + mat[1][3];
+    float zp = mat[2][0]*x + mat[2][1]*y + mat[2][2]*z + mat[2][3];
+    float wp = mat[3][0]*x + mat[3][1]*y + mat[3][2]*z + mat[3][3];
+
+    return hrt::core::point(xp, yp, zp)*(1/wp);
+}
+
+auto hrt::core::transform::operator()(const hrt::core::point &pt, hrt::core::point *p) const
+    -> void {
+    float x = pt.x, y = pt.y, z = pt.z;
+
+    p->x = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];
+    p->y = mat[1][0]*x + mat[1][1]*y + mat[1][2]*z + mat[1][3];
+    p->z = mat[2][0]*x + mat[2][1]*y + mat[2][2]*z + mat[2][3];
+    float w = mat[3][0]*x + mat[3][1]*y + mat[3][2]*z + mat[3][3];
+
+    *p *= 1/w;
+}

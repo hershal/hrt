@@ -43,8 +43,10 @@ auto hrt::core::transform::rotate(float rads, const hrt::core::vector* axis)
     return hrt::core::transform(m, mt);
 }
 
-auto hrt::core::transform::operator()(const hrt::core::point &pt) const
+auto hrt::core::transform::operator()
+    (const hrt::core::point &pt) const
     -> hrt::core::point {
+
     float x = pt.x, y = pt.y, z = pt.z;
 
     float xp = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];
@@ -55,8 +57,10 @@ auto hrt::core::transform::operator()(const hrt::core::point &pt) const
     return hrt::core::point(xp, yp, zp)*(1/wp);
 }
 
-auto hrt::core::transform::operator()(const hrt::core::point &pt, hrt::core::point *p) const
+auto hrt::core::transform::operator()
+    (const hrt::core::point &pt, hrt::core::point *p) const
     -> void {
+
     float x = pt.x, y = pt.y, z = pt.z;
 
     p->x = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];
@@ -78,8 +82,10 @@ auto hrt::core::transform::operator()(const hrt::core::vector &vec) const
     return hrt::core::vector(xv, yv, zv);
 }
 
-auto hrt::core::transform::operator()(const hrt::core::vector &vec, hrt::core::vector *v) const
+auto hrt::core::transform::operator()
+    (const hrt::core::vector &vec, hrt::core::vector *v) const
     -> void {
+
     float x = vec.x, y = vec.y, z = vec.z;
 
     v->x = mat[0][0]*x + mat[0][1]*y + mat[0][2]*z + mat[0][3];

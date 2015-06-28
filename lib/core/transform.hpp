@@ -38,11 +38,9 @@ namespace hrt {
             auto rotate(float rads, const vector *axis) -> transform;
 
           auto operator()(const point &p) const -> point;
-
           auto operator()(const point &pt, point *p) const -> void;
 
           auto operator()(const hrt::core:vector &vec) const -> vector;
-
           auto operator()(const vector &vec, vector *v) const -> void;
 
         private:

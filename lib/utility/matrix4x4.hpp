@@ -120,11 +120,18 @@ namespace hrt {
         /*! \brief Returns whether \m0 is approximately equal to \m1
 
            \param m0 the first matrix to compare against
-           \param m1 the second martrix to compare against
+           \param m1 the second matrix to compare against
            \returns if the matrices are approximately equal to each other
         */
         auto equalp(float m0[4][4], float m1[4][4]) -> bool;
 
+        /*! \brief Perform a component-wise multiplication
+         \param m0 The first matrix to multiply.
+         \param m1 The second matrix to multiply.
+         \param dst The matrix to store the result into.
+         \returns none.
+        */
+        auto mul(const float m0[4][4], const float m1[4][4], float dst[4][4]) -> void;
     }
 }
 #endif /* HRT_CORE_MATRIX4X4_HPP */

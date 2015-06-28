@@ -176,3 +176,11 @@ auto hrt::matrix4x4::transpose(float m[4][4]) -> void {
         }
     }
 }
+
+auto hrt::matrix4x4::mul(const float m0[4][4], const float m1[4][4], float dst[4][4]) -> void {
+    for (int i=0; i<3; ++i) {
+        for (int j=i+1; j<4; ++j) {
+            dst[i][j] = m0[i][j] * m1[i][j];
+        }
+    }
+}

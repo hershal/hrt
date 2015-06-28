@@ -60,6 +60,9 @@ namespace hrt {
             /*! \brief Expands their bounding_box by encapsulating a point within it */
             friend auto bb_union(const bounding_box *b, const point *p) -> bounding_box;
 
+            /*! \brief Expands the bounding_box by encapsulating a point within it, in place */
+            auto bb_union(const point *p) -> void;
+
             /*! \brief Expands their bounding_box by encapsulating another bounding_box */
             friend auto bb_union(const bounding_box *b0, const bounding_box *b1) -> bounding_box;
 

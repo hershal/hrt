@@ -120,10 +120,19 @@ auto bb_union(const hrt::core::bounding_box *b,
     return ret;
 }
 
-/*! \brief Construct a new bounding box which encloses two existing
-  bounding boxes. */
+auto hrt::core::bounding_box::bb_union(const hrt::core::point *p) -> void {
+
+    min.x = std::fmin(min.x, p->x);
+    min.y = std::fmin(min.y, p->y);
+    min.z = std::fmin(min.z, p->z);
+    max.x = std::fmax(max.x, p->x);
+    max.y = std::fmax(max.y, p->y);
+    max.z = std::fmax(max.z, p->z);
+}
+
 auto bb_union
-(const hrt::core::bounding_box &b1, const hrt::core::bounding_box &b2) -> hrt::core::bounding_box {
+(const hrt::core::bounding_box &b1, const hrt::core::bounding_box &b2)
+    -> hrt::core::bounding_box {
 
     hrt::core::bounding_box returning_box;
 

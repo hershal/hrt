@@ -73,4 +73,35 @@ friend transform rotate_z(float rads) {
     t.mat_inv[1][1] = cos_tmp;
     return t;
 }
+
+friend transform look_at(const point *position, const point* look_at, const vector* y_dir) {
+
+  float m[4][4];
+  m[0][3] = position->x;
+  m[1][3] = position->y;
+  m[2][3] = position->z;
+  m[3][3] = 1;
+
+  /* direction from look_at to position */
+  vector dir = geometry::normalize((*look_at - *position));
+
+  vector left = geometry::normalize(geometry::cross(geometry::normalize(*y_dir), dir));
+  vector new_y_dir = geometry::cross(dir, left);
+
+  m[0][0] = left.x;
+  m[0][1] = left.y;
+  m[0][2] = left.z;
+  m[0][3] = 0;
+  m[1][0] = new_y_dir.x;
+  m[1][1] = new_y_dir.y;
+  m[1][2] = new_y_dir.z;
+  m[1][3] = 0;
+  m[2][0] = dir.x;
+  m[2][1] = dir.y;
+  m[2][2] = dir.z;
+  m[2][3] = 0;
+
+  return transform(m);
+}
+
 #endif  /* HRT_CORE_COMMON_MATRICES_HPP */

@@ -5,6 +5,8 @@
 
 #include <cmath>
 #include "core/vector.hpp"
+#include "core/point.hpp"
+#include "core/geometry.hpp"
 #include "utility/matrix4x4.hpp"
 
 namespace hrt {

@@ -40,8 +40,11 @@ namespace hrt {
           auto operator()(const point &p) const -> point;
           auto operator()(const point &pt, point *p) const -> void;
 
-          auto operator()(const hrt::core:vector &vec) const -> vector;
+          auto operator()(const vector &vec) const -> vector;
           auto operator()(const vector &vec, vector *v) const -> void;
+
+          auto operator()(const ray &r) const -> ray;
+          auto operator()(const ray &r, ray *rr) const -> void;
 
         private:
 

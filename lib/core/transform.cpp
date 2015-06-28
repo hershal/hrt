@@ -92,3 +92,22 @@ auto hrt::core::transform::operator()
     v->y = mat[1][0]*x + mat[1][1]*y + mat[1][2]*z + mat[1][3];
     v->z = mat[2][0]*x + mat[2][1]*y + mat[2][2]*z + mat[2][3];
 }
+
+auto hrt::core::transform::operator()
+    (const hrt::core::ray &r) const
+    -> hrt::core::ray {
+
+    ray rr = r;
+    (*this)(rr.origin, &rr.origin);
+    (*this)(rr.direction, &rr.direction);
+    return rr;
+}
+
+auto hrt::core::transform::operator()
+    (const hrt::core::ray &r, hrt::core::ray *rr) const
+    -> void {
+
+    *rr = r;
+    (*this)(rr->origin, &(rr->origin));
+    (*this)(rr->direction, &(rr->direction));
+}

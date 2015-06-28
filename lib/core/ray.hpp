@@ -5,6 +5,9 @@
   \f$r(t) = o + t d\f$ where \f$0\le t \le \infty\f$.
 */
 
+#ifndef HRT_CORE_RAY_HPP
+#define HRT_CORE_RAY_HPP
+
 #include "point.hpp"
 #include "vector.hpp"
 
@@ -48,3 +51,5 @@ namespace hrt {
         };
     }
 }
+
+#endif /* HRT_CORE_RAY_HPP */

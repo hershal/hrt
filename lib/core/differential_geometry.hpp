@@ -23,13 +23,23 @@ namespace hrt {
 
         class differential_geometry {
         public:
-            differential_geometry(const core::point *p, const core::normal *n,
-                                  float u, float v, core::vector *dpdu,
-                                  core::vector *dpdv, core::normal *dndu,
-                                  core::normal *dndv, shapes::base_shape *shape) {
 
-                this->nn = core::normal(geometry::normalize(*n));
+            /* These variables effectively capture the differential geometry
+               surrounding a single point on some surface. */
+            core::point p;
+            core::normal nn;   /* normalized */
+            float u, v;
+            shapes::base_shape *shape;
+            core::vector dpdu, dpdv;
+            core::normal dndu, dndv;
 
+            differential_geometry(const core::point *p,
+                                  float u, float v,
+                                  const core::vector *dpdu, const core::vector *dpdv,
+                                  const core::normal *dndu, const core::normal *dndv,
+                                  shapes::base_shape *shape) {
+
+                this->nn = core::normal(geometry::cross(*dpdu, *dpdv));
                 *(&(this->p)) = *p;
                 this->u = u;
                 this->v = v;
@@ -39,14 +49,6 @@ namespace hrt {
                 *(&(this->dndv)) = *dndv;
                 this->shape = shape;
             }
-
-        private:
-            core::point p;
-            core::normal nn;   /* normalized */
-            float u, v;
-            shapes::base_shape *shape;
-            core::vector dpdu, dpdv;
-            core::normal dndu, dndv;
         };
     }
 }

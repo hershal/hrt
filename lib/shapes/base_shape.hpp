@@ -1,6 +1,9 @@
 /*! Shape header for Hershal Bhave's hrt renderer */
 /*! All shapes are defined in their own coordinate space */
 
+#ifndef HRT_SHAPES_BASE_SHAPE_HPP
+#define HRT_SHAPES_BASE_SHAPE_HPP
+
 #include <memory>
 #include <vector>
 
@@ -107,3 +110,5 @@ namespace hrt {
         };
     }
 }
+
+#endif /* HRT_SHAPES_BASE_SHAPE_HPP */

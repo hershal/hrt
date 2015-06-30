@@ -1,6 +1,7 @@
 /*! Shape implementation for Hershal Bhave's hrt renderer */
 
 #include "base_shape.hpp"
+#include "../core/differential_geometry.hpp"
 
 #include <cstdio>
 

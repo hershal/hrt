@@ -13,6 +13,11 @@
 #include "../core/differential_geometry.hpp"
 
 namespace hrt {
+
+    namespace core {
+        class differential_geometry;
+    }
+
     namespace shapes {
         class base_shape {
         public:

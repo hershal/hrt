@@ -20,8 +20,8 @@ namespace hrt {
                 : base_shape(o_w, w_o, reverse) {
                 this->radius = radius;
                 this->phi_max = phi_max;
-                this->z_min = z_min;
-                this->z_max = z_max;
+                this->z_min = clamp(std::min(z_min, z_max), -radius, radius);
+                this->z_max = clamp(std::max(z_min, z_max), -radius, radius);
                 this->theta_min = acosf(clamp(z_min/radius, -1.0f, 1.0f));
                 this->theta_max = acosf(clamp(z_max/radius, -1.0f, 1.0f));
             }

@@ -43,7 +43,7 @@ namespace hrt {
             auto norm() const -> float;
 
             /*! \brief normal equality operator */
-            auto operator= (const normal& v) -> normal&;
+            auto operator= (const normal& n) -> normal&;
 
             /*! \brief normal unary negation operator. */
             auto operator-() const -> normal;

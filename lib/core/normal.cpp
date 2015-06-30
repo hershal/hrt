@@ -21,12 +21,12 @@ auto hrt::core::normal::norm() const -> float {
     return sqrtf(normsq());
 }
 
-auto hrt::core::normal::operator=(const hrt::core::normal& v)
+auto hrt::core::normal::operator=(const hrt::core::normal& n)
     -> hrt::core::normal& {
 
-    this->x = v.x;
-    this->y = v.y;
-    this->z = v.z;
+    this->x = n.x;
+    this->y = n.y;
+    this->z = n.z;
     return *this;
 }
 

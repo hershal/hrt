@@ -7,8 +7,8 @@
 
 #include "base_shape.hpp"
 
-#include "core/bounding_box.hpp"
-#include "utility/utility_functions.hpp"
+#include "../core/bounding_box.hpp"
+#include "../utility/utility_functions.hpp"
 
 namespace hrt {
     namespace shapes {

@@ -4,10 +4,10 @@
 #include <memory>
 #include <vector>
 
-#include "core/bounding_box.hpp"
-#include "core/ray.hpp"
-#include "core/transform.hpp"
-#include "core/differential_geometry.hpp"
+#include "../core/bounding_box.hpp"
+#include "../core/ray.hpp"
+#include "../core/transform.hpp"
+#include "../core/differential_geometry.hpp"
 
 namespace hrt {
     namespace shapes {

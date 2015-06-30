@@ -1,7 +1,7 @@
 /*! Normal implementation for Hershal Bhave's hrt renderer */
 
 #include "normal.hpp"
-#include "utility/utility_functions.hpp"
+#include "../utility/utility_functions.hpp"
 
 auto hrt::core::normal::hasnan() const -> bool {
 

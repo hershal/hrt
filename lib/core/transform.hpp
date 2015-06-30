@@ -4,10 +4,10 @@
 #define HRT_CORE_TRANSFORM_HPP
 
 #include <cmath>
-#include "core/vector.hpp"
-#include "core/point.hpp"
-#include "core/geometry.hpp"
-#include "utility/matrix4x4.hpp"
+#include "../core/vector.hpp"
+#include "../core/point.hpp"
+#include "../core/geometry.hpp"
+#include "../utility/matrix4x4.hpp"
 
 namespace hrt {
     namespace core {

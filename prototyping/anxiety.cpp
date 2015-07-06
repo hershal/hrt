@@ -20,7 +20,7 @@ int main() {
     float camera_radius = 5.f;
 
     /* computed constants */
-    float fov = fov_degrees/180*M_PI;
+    float fov = fov_degrees*M_PI/180;
     float fovmax = -fov/2;
     float fovmin = fov/2;
 

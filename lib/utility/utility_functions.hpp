@@ -52,6 +52,7 @@ auto is_between_inc(int val, int low, int high) -> bool;
 auto is_between_exc(int val, int low, int high) -> bool;
 
 inline auto to_radians(float deg) -> float { return deg * M_PI / 180; }
+inline auto to_degrees(float rads) -> float { return rads * 180 / M_PI; }
 
 static const float machine_epsilon = pow(10, -6);
 

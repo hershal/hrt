@@ -17,7 +17,6 @@ int main() {
     /* 1cm = 1.f */
     size_t xres = 100;
     size_t yres = 100;
-    size_t numbounces = 0;
     float fov_degrees = 75.f;
     float camera_radius = 5.f;
 
@@ -46,43 +45,42 @@ int main() {
     Magick::Color hitcolor("black");
     /* float** film = (float**)malloc(xres*yres*sizeof(float)); */
 
+    vector camera_to_sphere(sphere_origin - camera_origin);
+
     for (size_t i=0; i<xres; ++i) {
         for (size_t j=0; j<yres; ++j) {
-            for (size_t k=0; k<numbounces+1; ++k) {
 
-                /* camera's radius is specified, meaning the film is
-                   on the origin in camera-space and the lens is the
-                   radius away. */
-                /* compute angle into the scene */
+            /* camera's radius is specified, meaning the film is
+               on the origin in camera-space and the lens is the
+               radius away. */
+            /* compute angle into the scene */
 
-                /* this is a pinhole camera */
-                float camera_x_rotate = linear_interpolate((float)i/xres,fovmin,fovmax);
-                float camera_y_rotate = linear_interpolate((float)j/yres,fovmin,fovmax);
-                vector camera_at_world(camera_x_rotate, camera_y_rotate, 1);
-                vector camera_at_world_n(geometry::normalize(camera_at_world));
+            /* this is a pinhole camera */
+            float camera_x_rotate = linear_interpolate((float)i/xres,fovmin,fovmax);
+            float camera_y_rotate = linear_interpolate((float)j/yres,fovmin,fovmax);
+            vector camera_at_world(camera_x_rotate, camera_y_rotate, 1);
+            vector camera_at_world_n(geometry::normalize(camera_at_world));
 
-                ray r(camera_origin, camera_at_world_n);
+            ray r(camera_origin, camera_at_world_n);
 
-                /* testing for sphere intersection */
-                vector camera_to_sphere(sphere_origin - camera_origin);
-                float t_ca = geometry::dot(camera_to_sphere, camera_at_world);
-                float d = sqrt(camera_to_sphere.normsq() + t_ca*t_ca);
+            /* testing for sphere intersection */
+            float t_ca = geometry::dot(camera_to_sphere, r.direction);
+            float d = sqrtf(camera_to_sphere.normsq() - t_ca*t_ca);
 
-                if (d < sphere_r) {
-                    /* film[i][j] = 1.f; */
-                    img.pixelColor(i, j, hitcolor);
-                } else {
-                    /* film[i][j] = 0.f; */
-                }
-
-                (void) t_ca;
-                (void) camera_at_world;
-                (void) camera_at_world_n;
-                (void) light_dir;
-                (void) camera_dir;
-                (void) sphere_r;
-                (void) camera_radius;
+            if (d < sphere_r) {
+                img.pixelColor(i, j, hitcolor);
+                /* film[i][j] = 1.f; */
+            } else {
+                /* film[i][j] = 0.f; */
             }
+
+            (void) t_ca;
+            (void) camera_at_world;
+            (void) camera_at_world_n;
+            (void) light_dir;
+            (void) camera_dir;
+            (void) sphere_r;
+            (void) camera_radius;
         }
     }
 

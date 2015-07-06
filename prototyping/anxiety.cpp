@@ -58,10 +58,9 @@ int main() {
             /* this is a pinhole camera */
             float camera_x_rotate = linear_interpolate((float)i/xres,fovmin,fovmax);
             float camera_y_rotate = linear_interpolate((float)j/yres,fovmin,fovmax);
-            vector camera_at_world(camera_x_rotate, camera_y_rotate, 1);
-            vector camera_at_world_n(geometry::normalize(camera_at_world));
+            vector camera_at_world = geometry::normalize(vector(camera_x_rotate, camera_y_rotate, 1));
 
-            ray r(camera_origin, camera_at_world_n);
+            ray r(camera_origin, camera_at_world);
 
             /* testing for sphere intersection */
             float t_ca = geometry::dot(camera_to_sphere, r.direction);
@@ -74,9 +73,6 @@ int main() {
                 /* film[i][j] = 0.f; */
             }
 
-            (void) t_ca;
-            (void) camera_at_world;
-            (void) camera_at_world_n;
             (void) light_dir;
             (void) camera_dir;
             (void) sphere_r;

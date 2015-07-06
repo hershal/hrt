@@ -13,7 +13,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get install -qq gcc-4.8 g++-4.8 valgrind libboost1.48-all-dev graphicsmagick
+  - sudo apt-get install -qq gcc-4.8 g++-4.8 valgrind libboost1.48-all-dev graphicsmagick-dbg
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 90
 

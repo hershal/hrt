@@ -21,7 +21,7 @@ auto hrt::core::point::operator-(const hrt::core::vector &v) const -> hrt::core:
     return point(this->x - v.x, this->y - v.y, this->z - v.z);
 }
 
-                                                                                                                                                   auto hrt::core::point::operator-=(const hrt::core::vector &v) -> hrt::core::point& {
+auto hrt::core::point::operator-=(const hrt::core::vector &v) -> hrt::core::point& {
     this->x -= v.x;
     this->y -= v.y;
     this->z -= v.z;
